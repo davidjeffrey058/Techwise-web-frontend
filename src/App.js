@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import BottomNav from "./components/bottomNav";
+import { useState } from 'react';
+import Home from "./pages/home";
+import Category from "./pages/category";
+import Wishlist from "./pages/wishlist";
+import Profile from "./pages/profile";
 
 function App() {
+  const appTitle = "Techwise";
+  const navNames = ['Home', 'Category', 'Wishlist', 'Profile']
+  let [selectedIndex, setSelectedIndex] = useState(0);
+
+  const onNavItemOnCick = (index) => {
+    setSelectedIndex(index);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {selectedIndex === 0 && <Home title={appTitle} />}
+      {selectedIndex === 1 && <Category />}
+      {selectedIndex === 2 && <Wishlist />}
+      {selectedIndex === 3 && <Profile />}
+      <BottomNav navNames={navNames} selectedIndex={selectedIndex} handleClick={onNavItemOnCick} />
     </div>
   );
 }

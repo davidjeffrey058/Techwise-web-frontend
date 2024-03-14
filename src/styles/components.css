@@ -1,0 +1,135 @@
+/* Bottom Navigation */
+.bottom_nav {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    height: 64px;
+    box-shadow: 0 -2px 6px #00000012;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: white;
+}
+
+.nav_item {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: #ADADAD;
+    align-items: center;
+    cursor: pointer;
+}
+
+.selected {
+    color: #0074A6;
+}
+
+.bottom_nav div p {
+    margin: 0;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.special_product {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-inline: 10px;
+    height: 220px;
+    background-color: beige;
+}
+
+.special_product i {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border: 2px solid white;
+    color: white;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.189);
+}
+
+.section_text {
+    color: #707070;
+    font-weight: bold;
+    margin: 13px 0;
+    font-size: 12px;
+}
+
+.section {
+    overflow-x: scroll;
+    display: flex;
+    scrollbar-width: none;
+}
+
+/* ProductLayout */
+.product_container {
+    padding: 5px;
+    margin-inline: 2px;
+    cursor: pointer;
+    width: 180px;
+    transition: all 0.15s ease-in;
+}
+
+.product_container:hover {
+    background-color: rgb(239, 239, 239);
+}
+
+.p_image {
+    width: 170px;
+    height: 150px;
+    background-color: #ADADAD;
+    border-radius: 12px;
+    margin-inline: auto;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+}
+
+.first p {
+    height: 28px;
+    overflow: hidden;
+    margin-bottom: 5px;
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
+.rating p {
+    margin: 0 5px;
+    font-size: 12px;
+
+}
+
+.price_format {
+    color: #0074A6;
+    font-weight: bold;
+    margin: 0;
+    font-size: 12px;
+}
+
+/* App bar */
+.app_bar {
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #0074A6;
+    padding: 16px 20px;
+    color: white;
+}
+
+.app_bar p {
+    margin: 0;
+    font-size: 15px;
+}
