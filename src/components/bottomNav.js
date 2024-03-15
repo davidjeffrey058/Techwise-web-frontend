@@ -6,8 +6,8 @@ const BottomNav = ({ navNames, selectedIndex, handleClick }) => {
             navNames.map((element) => (
                 <div className={selectedIndex === navNames.indexOf(element) ? "nav_item selected" : "nav_item"}
                     onClick={() => handleClick(navNames.indexOf(element))}>
-                    <i>{element}</i>
-                    <p>{element}</p>
+                    <i className="material-symbols-outlined">{element.icon}</i>
+                    <p>{element.label}</p>
                 </div>
             ))
         }</nav>

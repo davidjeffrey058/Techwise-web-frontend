@@ -20,11 +20,19 @@
     color: #ADADAD;
     align-items: center;
     cursor: pointer;
+    padding: 8px;
+}
+
+.nav_item:hover,
+.nav_item:active {
+    background-color: #eeeeeec1;
+    border-radius: 50%;
 }
 
 .selected {
     color: #0074A6;
 }
+
 
 .bottom_nav div p {
     margin: 0;

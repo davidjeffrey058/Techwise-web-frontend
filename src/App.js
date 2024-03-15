@@ -7,7 +7,12 @@ import Profile from "./pages/profile";
 
 function App() {
   const appTitle = "Techwise";
-  const navNames = ['Home', 'Category', 'Wishlist', 'Profile']
+  const navNames = [
+    { label: 'Home', icon: 'home' },
+    { label: 'Category', icon: 'category' },
+    { label: 'Wishlist', icon: 'favorite' },
+    { label: 'Profile', icon: 'person' },
+  ]
   let [selectedIndex, setSelectedIndex] = useState(0);
 
   const onNavItemOnCick = (index) => {
