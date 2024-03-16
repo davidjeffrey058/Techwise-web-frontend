@@ -1,4 +1,4 @@
-import AppBar from "../components/appBar"
+import AppBar from "../../components/appBar"
 
 const Wishlist = () => {
     const list = [2, 1, 3, 2]
@@ -11,7 +11,7 @@ const Wishlist = () => {
                         <div className="w_info_row">
                             <img src="" alt="img" />
                             <div>
-                                <p>Hp Pavilion Gaming PC</p>
+                                <p className="grey_text">Hp Pavilion Gaming PC</p>
                                 <p className="price_format">USD499.99</p>
                             </div>
                         </div>

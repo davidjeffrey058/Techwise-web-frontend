@@ -3,10 +3,6 @@ body {
   padding: 0;
 }
 
-.bdy {
-  padding-bottom: 74px;
-}
-
 p {
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -15,6 +11,40 @@ button {
   cursor: pointer;
 }
 
+.link {
+  text-decoration: none;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+}
+
+.row p {
+  margin: 0;
+}
+
+.small_text {
+  font-size: 11px;
+}
+
+.row_spc_btw {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.grey_text {
+  font-size: 12px;
+  font-weight: 600;
+  color: #707070;
+}
+
+
+.bdy {
+  padding-bottom: 74px;
+  height: auto;
+}
 
 /* The head section */
 .title {
@@ -39,11 +69,17 @@ header {
 }
 
 .input_search {
-  width: 100%;
-  height: 40px;
+  width: auto;
+  height: 50px;
   outline: none;
   border: none;
   border-radius: 9px;
+  background-color: white;
+  padding-inline: 20px;
+}
+
+.input_search p {
+  margin: 0;
 }
 
 /* category gridview */
@@ -212,14 +248,51 @@ p {
   border-radius: 5px;
 }
 
-.del {
+.wb_info_row button:first-child {
+  color: red;
   border: 1px solid red;
   background-color: transparent;
-  color: red;
 }
+
 
 .add {
   color: white;
   border: none;
   background-color: #0074A6;
+}
+
+/* PRODUCT PAGE */
+.carousel_container {
+  width: 100%;
+  height: 250px;
+  background-color: #F8F8F8;
+}
+
+.desc_text {
+  font-size: 12px;
+  text-align: justify;
+  line-height: 16px;
+}
+
+section.p_info {
+  height: auto;
+}
+
+.p_action {
+  width: 100%;
+  height: 78px;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid #d9d9d9;
+  position: fixed;
+  bottom: 0;
+}
+
+.p_action button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 244px;
+  height: 46px;
+  border-radius: 5px;
 }

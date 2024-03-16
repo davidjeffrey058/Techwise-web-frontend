@@ -1,8 +1,13 @@
+import { Link } from 'react-router-dom';
+
 const AppBar = ({ title }) => {
     return (
         <div className="app_bar">
             <p>{title}</p>
-            <i>Cart</i>
+            <Link to={'/cart'} className='link'>
+                <i className="material-symbols-outlined">Shopping_cart</i>
+            </Link>
+
         </div>
     );
 }

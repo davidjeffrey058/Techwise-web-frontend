@@ -1,4 +1,4 @@
-import AppBar from "../components/appBar";
+import AppBar from "../../components/appBar";
 
 const Category = () => {
     const categories = [

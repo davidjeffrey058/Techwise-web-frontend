@@ -1,5 +1,5 @@
 const Profile = () => {
-    const options = ['My Oders', 'Vouchers', 'Recently Viewed', 'Inbox'];
+    const options = [{ icon: 'orders', label: 'My Oders' }, { icon: 'local_activity', label: 'Vouchers', }, { icon: 'history', label: 'Recently Viewed' }, { icon: 'inbox', label: 'Inbox' }];
     return (
         <div className="bdy prf">
 
@@ -18,11 +18,11 @@ const Profile = () => {
             <div className="options_container">
                 {options.map((element) => (
                     <div className="option">
-                        <i>ic</i>
+                        <i className="material-symbols-outlined">{element.icon}</i>
                         <div className="nm_hr_arr">
                             <div>
-                                <p>{element}</p>
-                                <i>arr</i>
+                                <p>{element.label}</p>
+                                <i className="material-symbols-outlined">chevron_right</i>
                             </div>
                             {options.indexOf(element) !== options.length - 1 && <hr color="grey" />}
                         </div>
@@ -30,20 +30,7 @@ const Profile = () => {
                 ))}
             </div>
             <br />
-            <div className="options_container">
-                {options.map((element) => (
-                    <div className="option">
-                        <i>ic</i>
-                        <div className="nm_hr_arr">
-                            <div>
-                                <p>{element}</p>
-                                <i>arr</i>
-                            </div>
-                            {options.indexOf(element) !== options.length - 1 && <hr color="grey" />}
-                        </div>
-                    </div>
-                ))}
-            </div>
+
         </div>
     );
 }

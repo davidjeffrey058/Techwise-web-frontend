@@ -1,9 +1,9 @@
-import BottomNav from "./components/bottomNav";
+import BottomNav from "../components/bottomNav";
 import { useState } from 'react';
-import Home from "./pages/home";
-import Category from "./pages/category";
-import Wishlist from "./pages/wishlist";
-import Profile from "./pages/profile";
+import Home from "./navPages/home";
+import Category from "./navPages/category";
+import Wishlist from "./navPages/wishlist";
+import Profile from "./navPages/profile";
 
 function App() {
   const appTitle = "Techwise";
@@ -21,11 +21,15 @@ function App() {
 
   return (
     <div className="App">
+
       {selectedIndex === 0 && <Home title={appTitle} />}
       {selectedIndex === 1 && <Category />}
       {selectedIndex === 2 && <Wishlist />}
       {selectedIndex === 3 && <Profile />}
+
       <BottomNav navNames={navNames} selectedIndex={selectedIndex} handleClick={onNavItemOnCick} />
+
+
     </div>
   );
 }

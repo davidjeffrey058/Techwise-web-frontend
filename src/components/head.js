@@ -3,9 +3,12 @@ const Head = ({ title }) => {
         <header>
             <div className="title_cart">
                 <h2 className="title">{title.toUpperCase()}</h2>
-                <i>Cart</i>
+                <i className="material-symbols-outlined">Shopping_cart</i>
             </div>
-            <input className="input_search" type="text" />
+            <div className="input_search row_spc_btw">
+                <p className="grey_text">Search here...</p>
+                <i className="material-symbols-outlined">search</i>
+            </div>
         </header>
     );
 }
