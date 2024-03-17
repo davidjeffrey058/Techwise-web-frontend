@@ -1,35 +1,29 @@
-import BottomNav from "../components/bottomNav";
-import { useState } from 'react';
-import Home from "./navPages/home";
-import Category from "./navPages/category";
-import Wishlist from "./navPages/wishlist";
-import Profile from "./navPages/profile";
+import { NavLink, Outlet } from 'react-router-dom';
 
 function App() {
-  const appTitle = "Techwise";
   const navNames = [
-    { label: 'Home', icon: 'home' },
-    { label: 'Category', icon: 'category' },
-    { label: 'Wishlist', icon: 'favorite' },
-    { label: 'Profile', icon: 'person' },
+    { label: 'Home', icon: 'home', url: '/' },
+    { label: 'Category', icon: 'category', url: '/category' },
+    { label: 'Wishlist', icon: 'favorite', url: '/wishlist' },
+    { label: 'Profile', icon: 'person', url: '/profile' },
   ]
-  let [selectedIndex, setSelectedIndex] = useState(0);
-
-  const onNavItemOnCick = (index) => {
-    setSelectedIndex(index);
-  }
 
   return (
     <div className="App">
+      <Outlet />
 
-      {selectedIndex === 0 && <Home title={appTitle} />}
-      {selectedIndex === 1 && <Category />}
-      {selectedIndex === 2 && <Wishlist />}
-      {selectedIndex === 3 && <Profile />}
+      {/* Bottom navigation */}
+      <nav className="bottom_nav">{
+        navNames.map((element) => (
+          <NavLink to={element.url} key={element.url} className={`link nav_item`}>
+            <div>
+              <i className="material-symbols-outlined">{element.icon}</i>
+              <p>{element.label}</p>
+            </div>
+          </NavLink>
 
-      <BottomNav navNames={navNames} selectedIndex={selectedIndex} handleClick={onNavItemOnCick} />
-
-
+        ))
+      }</nav>
     </div>
   );
 }

@@ -1,13 +1,10 @@
-import { Link } from 'react-router-dom';
 
-const AppBar = ({ title }) => {
+const AppBar = ({ title, action, leading }) => {
     return (
         <div className="app_bar">
-            <p>{title}</p>
-            <Link to={'/cart'} className='link'>
-                <i className="material-symbols-outlined">Shopping_cart</i>
-            </Link>
-
+            {leading}
+            <p style={{ marginLeft: leading && '5px', marginRight: 'auto' }}>{title}</p>
+            {action}
         </div>
     );
 }

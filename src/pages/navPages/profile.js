@@ -17,7 +17,7 @@ const Profile = () => {
 
             <div className="options_container">
                 {options.map((element) => (
-                    <div className="option">
+                    <div className="option hover">
                         <i className="material-symbols-outlined">{element.icon}</i>
                         <div className="nm_hr_arr">
                             <div>

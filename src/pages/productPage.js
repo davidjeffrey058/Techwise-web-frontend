@@ -1,10 +1,11 @@
 import React from 'react'
 import AppBar from '../components/appBar';
+import BackIcon from '../components/backIcon';
 
 const ProductPage = () => {
     return (
-        <div>
-            <AppBar title={'Details'} />
+        <div className='bdy'>
+            <AppBar title={'Details'} leading={<BackIcon />} />
             <section className='p_info'>
                 <div className="carousel_container"></div>
                 <div style={{ margin: '20px 15px' }}>

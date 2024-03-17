@@ -11,6 +11,8 @@ button {
   cursor: pointer;
 }
 
+/* Some default styles */
+
 .link {
   text-decoration: none;
 }
@@ -40,10 +42,23 @@ button {
   color: #707070;
 }
 
+.card {
+  box-shadow: 0 1px 3px #d0d0d0;
+  border-radius: 5px;
+  background-color: white;
+}
+
+.hover {
+  transition: all 0.15s ease-in;
+  cursor: pointer;
+}
+
+.hover:hover {
+  background-color: #e6e6e6;
+}
 
 .bdy {
   padding-bottom: 74px;
-  height: auto;
 }
 
 /* The head section */
@@ -98,15 +113,9 @@ header {
   text-align: center;
   width: 100%;
   aspect-ratio: 1;
-  box-shadow: 0 1px 6px #70707034;
-  border-radius: 10px;
-  transition: all 0.15s ease-in;
   cursor: pointer;
 }
 
-.category_container:hover {
-  background-color: #E3EBEF;
-}
 
 /* Profile page */
 .prf {
@@ -179,13 +188,9 @@ p {
   cursor: pointer;
   height: 50px;
   align-items: center;
-  transition: all 0.15s ease-out;
   color: #31424B;
 }
 
-.option:hover {
-  background-color: #E3EBEF;
-}
 
 .nm_hr_arr {
   width: 100%;
@@ -198,7 +203,8 @@ p {
 .nm_hr_arr div {
   display: flex;
   justify-content: space-between;
-  margin: auto 0;
+  margin-top: 14px;
+  align-items: center;
 }
 
 .nm_hr_arr div p {
@@ -242,23 +248,23 @@ p {
   justify-content: space-between;
 }
 
-.wb_info_row button {
+.del {
   font-size: 10px;
-  padding: 10px 20px;
-  border-radius: 5px;
-}
-
-.wb_info_row button:first-child {
   color: red;
   border: 1px solid red;
   background-color: transparent;
+  border-radius: 5px;
+  padding: 10px 20px;
+  background-color: white;
 }
 
 
 .add {
+  font-size: 10px;
   color: white;
   border: none;
   background-color: #0074A6;
+  border-radius: 5px;
 }
 
 /* PRODUCT PAGE */

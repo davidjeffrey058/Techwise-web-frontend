@@ -1,13 +1,14 @@
 import AppBar from "../../components/appBar"
+import CartIcon from '../../components/cartIcon';
 
 const Wishlist = () => {
     const list = [2, 1, 3, 2]
     return (
         <div className="bdy wishlist">
-            <AppBar title={"Wishlist"} />
+            <AppBar title={"Wishlist"} action={<CartIcon />} />
             <div className="all_wishlists">
                 {list.map(element => (
-                    <div className="wishlist_container">
+                    <div className="wishlist_container hover">
                         <div className="w_info_row">
                             <img src="" alt="img" />
                             <div>

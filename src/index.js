@@ -2,16 +2,39 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./styles/index.css";
 import "./styles/components.css";
+import './styles/otherPages.css';
 import App from "./pages/App";
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import ProductPage from "./pages/productPage";
 import Cart from "./pages/cart";
+import Home from "./pages/navPages/home";
+import Category from './pages/navPages/category'
+import Wishlist from './pages/navPages/wishlist'
+import Profile from './pages/navPages/profile'
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
-    errorElement: <div>404 Not Found</div>
+    errorElement: <div>404 Not Found</div>,
+    children: [
+      {
+        path: '/',
+        element: <Home title={'Techwise'} />
+      },
+      {
+        path: '/category',
+        element: <Category />
+      },
+      {
+        path: '/wishlist',
+        element: <Wishlist />
+      },
+      {
+        path: '/profile',
+        element: <Profile />
+      },
+    ]
   },
   {
     path: '/product_page',

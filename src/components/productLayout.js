@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 
-const ProductLayout = () => {
+const ProductLayout = ({ key }) => {
     return (
-        <Link to={'/product_page'} className='link'>
+        <Link to={'/product_page'} className='link' key={key}>
             <div className="product_container">
                 <div className="p_image">
                 </div>

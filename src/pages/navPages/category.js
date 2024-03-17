@@ -1,4 +1,5 @@
 import AppBar from "../../components/appBar";
+import CartIcon from '../../components/cartIcon';
 
 const Category = () => {
     const categories = [
@@ -14,10 +15,10 @@ const Category = () => {
     ]
     return (
         <div className="bdy">
-            <AppBar title={"Category"} />
+            <AppBar title={"Category"} action={<CartIcon />} />
             <div className="gridview">
                 {categories.map((element) => (
-                    <div className="category_container">
+                    <div className="category_container card hover">
                         <img src="" alt="img" width={96} height={69} />
                         <p className="price_format">{element.name}</p>
                     </div>

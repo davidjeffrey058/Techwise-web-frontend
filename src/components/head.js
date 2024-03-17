@@ -1,9 +1,11 @@
+import CartIcon from './cartIcon'
+
 const Head = ({ title }) => {
     return (
         <header>
             <div className="title_cart">
                 <h2 className="title">{title.toUpperCase()}</h2>
-                <i className="material-symbols-outlined">Shopping_cart</i>
+                <CartIcon iconColor={'black'} />
             </div>
             <div className="input_search row_spc_btw">
                 <p className="grey_text">Search here...</p>

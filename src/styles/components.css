@@ -15,22 +15,23 @@
 }
 
 .nav_item {
+    color: #ADADAD;
+    cursor: pointer;
+    height: 60px;
+    width: 60px;
     display: flex;
     flex-direction: column;
-    text-decoration: none;
-    color: #ADADAD;
     align-items: center;
-    cursor: pointer;
-    padding: 8px;
+    justify-content: center;
+    text-align: center;
 }
 
-.nav_item:hover,
-.nav_item:active {
+.nav_item:hover {
     background-color: #eeeeeec1;
     border-radius: 50%;
 }
 
-.selected {
+.active {
     color: #0074A6;
 }
 
@@ -132,7 +133,7 @@
     position: sticky;
     top: 0;
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     align-items: center;
     background-color: #0074A6;
     padding: 16px 20px;
