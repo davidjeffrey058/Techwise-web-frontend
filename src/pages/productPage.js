@@ -1,8 +1,10 @@
 import React from 'react'
 import AppBar from '../components/appBar';
 import BackIcon from '../components/backIcon';
+import { useParams } from 'react-router-dom';
 
 const ProductPage = () => {
+    console.log(useParams())
     return (
         <div className='bdy'>
             <AppBar title={'Details'} leading={<BackIcon />} />

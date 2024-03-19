@@ -1,12 +1,14 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const BackIcon = ({ color }) => {
+    const history = useNavigate();
     return (
-        <Link>
-            <i className="material-symbols-outlined"
-                style={{ color: `${color || 'white'}` }}>back</i>
-        </Link>
+        <i
+            className="material-symbols-outlined"
+            style={{ color: `${color || 'white'}` }}
+            onClick={() => history(-1)}
+        >arrow_back</i>
 
     )
 }

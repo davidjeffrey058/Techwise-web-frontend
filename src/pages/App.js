@@ -1,17 +1,17 @@
 import { NavLink, Outlet } from 'react-router-dom';
 
+
 function App() {
   const navNames = [
     { label: 'Home', icon: 'home', url: '/' },
     { label: 'Category', icon: 'category', url: '/category' },
     { label: 'Wishlist', icon: 'favorite', url: '/wishlist' },
     { label: 'Profile', icon: 'person', url: '/profile' },
-  ]
+  ];
 
   return (
     <div className="App">
       <Outlet />
-
       {/* Bottom navigation */}
       <nav className="bottom_nav">{
         navNames.map((element) => (
