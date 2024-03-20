@@ -1,9 +1,12 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import useAuthState from '../methods/authState';
 
 const CartIcon = ({ iconColor }) => {
+    const { authUser } = useAuthState()
+
     return (
-        <Link to={'/cart'} className='link' style={{ color: `${iconColor || 'white'}` }}>
+        <Link to={authUser ? '/cart' : '/login'} className='link' style={{ color: `${iconColor || 'white'}` }}>
             <i className="material-symbols-outlined filled">Shopping_cart</i>
         </Link>
     )

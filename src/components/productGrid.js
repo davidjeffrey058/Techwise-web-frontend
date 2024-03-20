@@ -2,6 +2,7 @@ import React from 'react'
 import CurrencyFormat from '../methods/currencyFormat'
 import rating from '../methods/rating'
 import { Link } from 'react-router-dom'
+import FavButton from './favButton'
 const ProductGrid = ({ data }) => {
     return (
         <div className='gridview' style={{ gap: '5px', margin: '10px' }}>
@@ -15,9 +16,20 @@ const ProductGrid = ({ data }) => {
                         <div style={{
                             width: '100%',
                             aspectRatio: '1.5',
-                            backgroundColor: '#d0d0d0'
+                            backgroundColor: '#d0d0d0',
+                            position: 'relative'
                         }}>
-                            <img src={element.image_urls[0]} alt={element.name} width={'100%'} height={'100%'} />
+                            <img src={element.image_urls[0]} alt={element.name} width={'100%'} height={'100%'} style={{ objectFit: 'cover' }} />
+                            <FavButton styles={{
+                                color: "red",
+                                position: 'absolute',
+                                top: '5px',
+                                right: '5px',
+                                zIndex: '3',
+                                backgroundColor: 'white',
+                                padding: '5px',
+                                borderRadius: '50%'
+                            }} />
                         </div>
 
                         {/* info */}

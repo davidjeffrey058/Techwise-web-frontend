@@ -1,7 +1,16 @@
 import { Link } from "react-router-dom";
+import useAuthState from '../../methods/authState';
+import { signOut } from "firebase/auth";
+import auth from "../../services/firebase";
 
 const Profile = () => {
-    const options = [{ icon: 'orders', label: 'My Oders' }, { icon: 'local_activity', label: 'Vouchers', }, { icon: 'history', label: 'Recently Viewed' }, { icon: 'inbox', label: 'Inbox' }];
+    const { authUser } = useAuthState()
+    const options = [
+        { icon: 'orders', label: 'My Oders' },
+        { icon: 'local_activity', label: 'Vouchers', },
+        { icon: 'history', label: 'Recently Viewed' },
+        { icon: 'inbox', label: 'Inbox' }
+    ];
     return (
         <div className="bdy prf">
 
@@ -11,10 +20,16 @@ const Profile = () => {
                     <img src="" alt="" />
                 </div>
                 <div className="user_info">
-                    <h2>David Jeffrey</h2>
-                    <p>davidjeffrey058@gmail.com</p>
-                    <button>EDIT PROFILE</button>
+                    {authUser ? <div>
+                        <h2>{authUser.displayName}</h2>
+                        <p>{authUser.email}</p>
+                        <button>EDIT PROFILE</button>
+                    </div> :
+                        <Link to={'/login'}>
+                            <button>Login</button>
+                        </Link>}
                 </div>
+
             </div>
 
             <div className="options_container">
@@ -48,13 +63,11 @@ const Profile = () => {
                 ))}
             </div>
             <br />
-            <Link to='/login' style={{ alignSelf: 'center', }}>
-                <button className="add"
-                    style={{
-                        padding: '10px 25px',
-                        fontSize: '13px'
-                    }}>Log Out</button>
-            </Link>
+            {authUser && <button className="add"
+                style={{
+                    padding: '10px 25px',
+                    fontSize: '13px',
+                }} onClick={() => signOut(auth)}>Log Out</button>}
 
         </div>
     );

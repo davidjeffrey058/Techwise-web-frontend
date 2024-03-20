@@ -7,7 +7,7 @@ import useFetch from '../methods/useFetch'
 
 const CategoryPage = () => {
     const param = useParams();
-    const { data, error, isPending } = useFetch(`http://localhost:8080/techwise-api/category/${param.cat}`);
+    const { data, error, isPending } = useFetch(`http://10.206.35.143:8080/techwise-api/category/${param.cat}`);
 
     // console.log(data)
     return (

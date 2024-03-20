@@ -11,7 +11,7 @@ import 'swiper/css';
 
 const ProductPage = () => {
     const pId = useParams().id;
-    const { data, error, isPending } = useFetch(`http://localhost:8080/techwise-api/${pId}`);
+    const { data, error, isPending } = useFetch(`http://10.206.35.143:8080/techwise-api/${pId}`);
     const [imageIndex, setImageIndex] = useState(0)
 
     return (
