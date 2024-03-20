@@ -9,8 +9,8 @@ function Cart() {
 
             <AppBar title={'Cart'} leading={<BackIcon />} />
             <div className="cart_p_container">
-                {list.map(element => (
-                    <div className="cart_product card hover row_spc_btw">
+                {list.map((element, index) => (
+                    <div className="cart_product card hover row_spc_btw" key={index}>
                         <div>
                             <div className='row' style={{ alignItems: 'start' }}>
                                 <img src="" alt="img" />

@@ -26,10 +26,10 @@ const ProductPage = () => {
                             spaceBetween={50}
                             slidesPerView={1}
                             onSlideChange={(swiper) => { setImageIndex(swiper.activeIndex) }}
-                            onSwiper={(swiper) => console.log(swiper.activeIndex)}
+                            onSwiper={(swiper) => { }}
                         >
                             {data.image_urls.map((image, index) => (
-                                <SwiperSlide>
+                                <SwiperSlide key={index}>
                                     <img className='card' src={image} alt={`${data.name} (img ${index + 1})`}
                                         height={'240px'} width={'95%'} style={{ objectFit: 'cover' }} />
                                 </SwiperSlide>

@@ -8,7 +8,8 @@ body {
   padding: 0;
 }
 
-p {
+p,
+h2 {
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -16,12 +17,10 @@ button {
   cursor: pointer;
 }
 
-
+/* Some default styles */
 .filled {
   font-variation-settings: 'FILL' 1;
 }
-
-/* Some default styles */
 
 .link {
   text-decoration: none;
@@ -69,6 +68,13 @@ button {
 
 .bdy {
   padding-bottom: 74px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  text-align: center;
 }
 
 /* The head section */
@@ -146,6 +152,10 @@ header {
 .prf {
   padding: 30px 20px 0 30px;
   background-color: #F8F8F8;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  height: 90dvh;
 }
 
 .user_details_row {
@@ -285,11 +295,18 @@ p {
 
 
 .add {
-  font-size: 10px;
+  font-size: 12px;
   color: white;
   border: none;
   background-color: #0074A6;
   border-radius: 5px;
+  padding: 5px 10px;
+  transition: all 0.15s ease-in;
+}
+
+.add:hover {
+  background-color: #017db2;
+  box-shadow: 0 2px 3px #d0d0d0;
 }
 
 /* PRODUCT PAGE */

@@ -7,8 +7,8 @@ const Wishlist = () => {
         <div className="bdy wishlist">
             <AppBar title={"Wishlist"} action={<CartIcon />} />
             <div className="all_wishlists">
-                {list.map(element => (
-                    <div className="wishlist_container hover">
+                {list.map((element, index) => (
+                    <div className="wishlist_container hover" key={index}>
                         <div className="w_info_row">
                             <img src="" alt="img" />
                             <div>

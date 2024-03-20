@@ -4,7 +4,6 @@ import useFetch from "../../methods/useFetch";
 
 const Home = ({ title }) => {
     const { data: products, error, isPending } = useFetch('http://localhost:8080/techwise-api');
-    // const list = [1, 2, 5, 3, 6];
     return (
         <div className="bdy">
             <Head title={title} />
@@ -17,13 +16,13 @@ const Home = ({ title }) => {
             <div className="section">
                 {error && <p>{error}</p>}
                 {isPending && <p>Loading...</p>}
-                {products && products.map((element) => (<ProductLayout key={element} product={element} />))}
+                {products && products.map((element, index) => (<ProductLayout key={index} product={element} />))}
             </div>
             <p className="section_text">Featured Products</p>
             <div className="section">
                 {error && <p>{error}</p>}
                 {isPending && <p>Loading...</p>}
-                {products && products.map((element) => (<ProductLayout key={element} product={element} />))}
+                {products && products.map((element, index) => (<ProductLayout key={index} product={element} />))}
             </div>
         </div>
     );

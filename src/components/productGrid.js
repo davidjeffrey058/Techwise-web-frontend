@@ -6,7 +6,7 @@ const ProductGrid = ({ data }) => {
     return (
         <div className='gridview' style={{ gap: '5px', margin: '10px' }}>
             {data.map((element, index) => (
-                <Link className='link' to={`/product_page/${element._id}`}>
+                <Link className='link' to={`/product_page/${element._id}`} key={index}>
                     <div className='card hover' key={index}
                         style={{
                             overflow: 'hidden'
@@ -21,7 +21,7 @@ const ProductGrid = ({ data }) => {
                         </div>
 
                         {/* info */}
-                        <p className='section_text' style={{ margin: '10px' }}>{element.name}</p>
+                        <p className='section_text' style={{ margin: '10px', overflow: 'clip' }}>{element.name}</p>
                         <div className="row_spc_btw" style={{ margin: '0 10px 10px 10px' }}>
                             <p className="price_format">{CurrencyFormat(element.price)}</p>
                             <div className='row rating'>

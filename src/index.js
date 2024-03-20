@@ -12,6 +12,8 @@ import Category from './pages/navPages/category'
 import Wishlist from './pages/navPages/wishlist'
 import Profile from './pages/navPages/profile'
 import CategoryPage from "./pages/categoryPage";
+import Login from "./pages/login";
+import SignUp from "./pages/signUp";
 
 const router = createBrowserRouter([
   {
@@ -48,6 +50,10 @@ const router = createBrowserRouter([
   {
     path: '/category_page/:cat',
     element: <CategoryPage />
+  },
+  {
+    path: '/login',
+    element: <Login />
   }
 ])
 

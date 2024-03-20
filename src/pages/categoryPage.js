@@ -6,14 +6,15 @@ import ProductGrid from '../components/productGrid'
 import useFetch from '../methods/useFetch'
 
 const CategoryPage = () => {
-    const list = [2, 4, 6, 3, 9];
     const param = useParams();
     const { data, error, isPending } = useFetch(`http://localhost:8080/techwise-api/category/${param.cat}`);
 
-    console.log(data)
+    // console.log(data)
     return (
         <div>
             <AppBar title={param.cat} leading={<BackIcon />} />
+            {isPending && <div>Loading...</div>}
+            {error && <div>{error}</div>}
             {data && <ProductGrid data={data} />}
         </div>
     )

@@ -18,8 +18,8 @@ const Category = () => {
         <div className="bdy">
             <AppBar title={"Category"} action={<CartIcon />} />
             <div className="gridview">
-                {categories.map((element) => (
-                    <Link to={`/category_page/${element.name}`} className='link'>
+                {categories.map((element, index) => (
+                    <Link to={`/category_page/${element.name}`} className='link' key={index}>
                         <div className="category_container card hover" key={element.name}>
                             <img src={element.imageUrl} alt="img" width={96} height={69} style={{ objectFit: 'contain' }} />
                             <br />
