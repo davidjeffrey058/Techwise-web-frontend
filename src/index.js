@@ -11,6 +11,7 @@ import Home from "./pages/navPages/home";
 import Category from './pages/navPages/category'
 import Wishlist from './pages/navPages/wishlist'
 import Profile from './pages/navPages/profile'
+import CategoryPage from "./pages/categoryPage";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
   {
     path: '/cart',
     element: <Cart />
+  },
+  {
+    path: '/category_page/:cat',
+    element: <CategoryPage />
   }
 ])
 

@@ -3,7 +3,7 @@ import ProductLayout from "../../components/productLayout";
 import useFetch from "../../methods/useFetch";
 
 const Home = ({ title }) => {
-    const { data: products, error, isPending } = useFetch('http://10.206.35.1:8080/techwise-api');
+    const { data: products, error, isPending } = useFetch('http://localhost:8080/techwise-api');
     // const list = [1, 2, 5, 3, 6];
     return (
         <div className="bdy">

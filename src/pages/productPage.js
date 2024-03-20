@@ -1,19 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import AppBar from '../components/appBar';
 import BackIcon from '../components/backIcon';
 import { useParams } from 'react-router-dom';
 import useFetch from '../methods/useFetch';
 import CurrencyFormat from '../methods/currencyFormat';
 import rating from '../methods/rating';
-
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 
 
 const ProductPage = () => {
     const pId = useParams().id;
-    const { data, error, isPending } = useFetch(`http://10.206.35.1:8080/techwise-api/${pId}`);
-    console.log(data);
+    const { data, error, isPending } = useFetch(`http://localhost:8080/techwise-api/${pId}`);
+    const [imageIndex, setImageIndex] = useState(0)
 
     return (
         <div className='bdy'>
@@ -26,16 +25,37 @@ const ProductPage = () => {
                         <Swiper
                             spaceBetween={50}
                             slidesPerView={1}
-                            onSlideChange={() => console.log('slide change')}
-                            onSwiper={(swiper) => console.log(swiper)}
+                            onSlideChange={(swiper) => { setImageIndex(swiper.activeIndex) }}
+                            onSwiper={(swiper) => console.log(swiper.activeIndex)}
                         >
-                            {data.image_urls.map(image => (
+                            {data.image_urls.map((image, index) => (
                                 <SwiperSlide>
-                                    <img className='card' src={image} alt="img" height={'240px'} width={'95%'} style={{ objectFit: 'cover' }} />
+                                    <img className='card' src={image} alt={`${data.name} (img ${index + 1})`}
+                                        height={'240px'} width={'95%'} style={{ objectFit: 'cover' }} />
                                 </SwiperSlide>
                             ))}
                         </Swiper>
-
+                    </div>
+                    {/* indicators */}
+                    <div style={{
+                        height: '20px',
+                        display: 'flex',
+                        width: '100%',
+                        justifyContent: 'center',
+                        alignItems: 'center'
+                    }}>
+                        {
+                            data.image_urls.map((element, index) => (
+                                <div key={index} style={{
+                                    width: index === imageIndex ? '10px' : '7px',
+                                    height: index === imageIndex ? '10px' : '7px',
+                                    backgroundColor: index === imageIndex ? '#0074A6' : ' #d0d0d0',
+                                    marginInline: '5px',
+                                    borderRadius: '50%',
+                                    transition: 'all 0.2s ease-in'
+                                }}></div>
+                            ))
+                        }
                     </div>
                     <div style={{ margin: '20px 15px' }}>
                         <div className='row_spc_btw'>
@@ -50,11 +70,17 @@ const ProductPage = () => {
                         </div>
                         <p className="section_text" style={{ marginLeft: '0' }}>Description</p>
                         <p className='desc_text'>{data.description}</p>
+                        <p className="section_text" style={{ marginLeft: '0' }}>Product Properties</p>
+                        <table>
+
+                        </table>
                     </div>
                 </section>
+
+                {/* Add to cart */}
                 <div className="p_action row">
                     <button className="add">
-                        <i className="material-symbols-outlined ">add_shopping_cart</i>
+                        <i className="material-symbols-outlined " style={{ marginRight: '5px' }}>add_shopping_cart</i>
                         ADD TO CART
                     </button>
                 </div>

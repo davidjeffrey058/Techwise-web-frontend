@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import AppBar from "../../components/appBar";
 import CartIcon from '../../components/cartIcon';
 
@@ -9,7 +10,7 @@ const Category = () => {
         { imageUrl: "cat_images/monitor.png", name: "Monitors" },
         { imageUrl: "cat_images/processor.jpg", name: "Computer Components" },
         { imageUrl: "cat_images/tablet.png", name: "Tablet & Phones" },
-        { imageUrl: "cat_images/keyboard_mouse.png", name: "Comuter Accessories" },
+        { imageUrl: "cat_images/keyboard_mouse.png", name: "Computer Accessories" },
         { imageUrl: "cat_images/hard_drive.png", name: "Storage & Hard Drives" },
         { imageUrl: "cat_images/moderm.png", name: "Networking" },
     ]
@@ -18,11 +19,13 @@ const Category = () => {
             <AppBar title={"Category"} action={<CartIcon />} />
             <div className="gridview">
                 {categories.map((element) => (
-                    <div className="category_container card hover">
-                        <img src={element.imageUrl} alt="img" width={96} height={69} style={{ objectFit: 'contain' }} />
-                        <br />
-                        <p className="price_format">{element.name}</p>
-                    </div>
+                    <Link to={`/category_page/${element.name}`} className='link'>
+                        <div className="category_container card hover" key={element.name}>
+                            <img src={element.imageUrl} alt="img" width={96} height={69} style={{ objectFit: 'contain' }} />
+                            <br />
+                            <p className="price_format">{element.name}</p>
+                        </div>
+                    </Link>
                 ))}
             </div>
         </div>
