@@ -1,22 +1,9 @@
 import Head from "../../components/head";
 import ProductLayout from "../../components/productLayout";
-import { useState, useEffect } from 'react';
+import useFetch from "../../methods/useFetch";
 
 const Home = ({ title }) => {
-    const [products, setProducts] = useState(null);
-
-    useEffect(() => {
-        fetch('http://10.206.34.55:8080/techwise-api')
-            .then(response => response.json())
-            .then(data => {
-                // console.log(data);
-                setProducts(data);
-            })
-            .catch((err) => {
-                console.log(err.message);
-            })
-    }, []);
-
+    const { data: products, error, isPending } = useFetch('http://10.206.35.1:8080/techwise-api');
     // const list = [1, 2, 5, 3, 6];
     return (
         <div className="bdy">
@@ -28,12 +15,16 @@ const Home = ({ title }) => {
             {/* Popular Products Section */}
             <p className="section_text">Popular Products</p>
             <div className="section">
+                {error && <p>{error}</p>}
+                {isPending && <p>Loading...</p>}
                 {products && products.map((element) => (<ProductLayout key={element} product={element} />))}
             </div>
-            <p className="section_text">Popular Products</p>
-            {/* <div className="section">
-                {list.map((element) => (<ProductLayout key={element} />))}
-            </div> */}
+            <p className="section_text">Featured Products</p>
+            <div className="section">
+                {error && <p>{error}</p>}
+                {isPending && <p>Loading...</p>}
+                {products && products.map((element) => (<ProductLayout key={element} product={element} />))}
+            </div>
         </div>
     );
 }

@@ -6,7 +6,7 @@ const BackIcon = ({ color }) => {
     return (
         <i
             className="material-symbols-outlined"
-            style={{ color: `${color || 'white'}` }}
+            style={{ color: `${color || 'white'}`, cursor: 'pointer' }}
             onClick={() => history(-1)}
         >arrow_back</i>
 
