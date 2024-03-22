@@ -2,8 +2,8 @@ import Head from "../../components/head";
 import ProductLayout from "../../components/productLayout";
 import useFetch from "../../methods/useFetch";
 
-const Home = ({ title }) => {
-    const { data: products, error, isPending } = useFetch('http://10.206.35.143:8080/techwise-api');
+const Home = ({ title, url }) => {
+    const { data: products, error, isPending } = useFetch(url);
     return (
         <div className="bdy">
             <Head title={title} />

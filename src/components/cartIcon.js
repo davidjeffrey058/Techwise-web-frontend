@@ -6,7 +6,7 @@ const CartIcon = ({ iconColor }) => {
     const { authUser } = useAuthState()
 
     return (
-        <Link to={authUser ? '/cart' : '/login'} className='link' style={{ color: `${iconColor || 'white'}` }}>
+        <Link to={authUser ? '/cart' : '/auth'} className='link' style={{ color: `${iconColor || 'white'}` }}>
             <i className="material-symbols-outlined filled">Shopping_cart</i>
         </Link>
     )

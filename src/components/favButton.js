@@ -7,7 +7,7 @@ const FavButton = ({ styles }) => {
     return (
         authUser ? <i className="material-symbols-outlined fav"
             style={styles || { color: "red" }}>favorite</i> :
-            <Link to={'/login'}>
+            <Link to={'/auth'}>
                 <i className="material-symbols-outlined fav"
                     style={styles || { color: "red" }}>favorite</i>
             </Link>

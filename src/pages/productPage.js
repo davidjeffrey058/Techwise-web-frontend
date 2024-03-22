@@ -9,9 +9,9 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 
 
-const ProductPage = () => {
+const ProductPage = ({ url }) => {
     const pId = useParams().id;
-    const { data, error, isPending } = useFetch(`http://10.206.35.143:8080/techwise-api/${pId}`);
+    const { data, error, isPending } = useFetch(`${url}/${pId}`);
     const [imageIndex, setImageIndex] = useState(0)
 
     return (
@@ -71,8 +71,13 @@ const ProductPage = () => {
                         <p className="section_text" style={{ marginLeft: '0' }}>Description</p>
                         <p className='desc_text'>{data.description}</p>
                         <p className="section_text" style={{ marginLeft: '0' }}>Product Properties</p>
-                        <table>
-
+                        <table className='pp_table'>
+                            {Object.keys(data.key_properties).map((key, index) => (
+                                <tr>
+                                    <td>{key}</td>
+                                    <td>{data.key_properties[key]}</td>
+                                </tr>
+                            ))}
                         </table>
                     </div>
                 </section>

@@ -12,8 +12,12 @@ import Category from './pages/navPages/category'
 import Wishlist from './pages/navPages/wishlist'
 import Profile from './pages/navPages/profile'
 import CategoryPage from "./pages/categoryPage";
-import Login from "./pages/login";
-import SignUp from "./pages/signUp";
+import Login from "./pages/screens/login";
+import AuthPage from "./pages/authPage";
+import SignUp from "./pages/screens/signUp";
+
+
+const url = "http://10.10.4.176:8080/techwise-api";
 
 const router = createBrowserRouter([
   {
@@ -23,7 +27,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <Home title={'Techwise'} />
+        element: <Home title={'Techwise'} url={url} />
       },
       {
         path: '/category',
@@ -41,7 +45,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/product_page/:id',
-    element: <ProductPage />
+    element: <ProductPage url={url} />
   },
   {
     path: '/cart',
@@ -49,11 +53,15 @@ const router = createBrowserRouter([
   },
   {
     path: '/category_page/:cat',
-    element: <CategoryPage />
+    element: <CategoryPage url={url} />
   },
+  // {
+  //   path: '/login',
+  //   element: <Login />
+  // },
   {
-    path: '/login',
-    element: <Login />
+    path: '/auth',
+    element: <AuthPage />,
   }
 ])
 

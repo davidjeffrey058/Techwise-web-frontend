@@ -1,24 +1,27 @@
 import React, { useState } from 'react'
-import GoogleButton from '../components/googleButton'
-import auth from '../services/firebase';
+import GoogleButton from '../../components/googleButton'
+import auth from '../../services/firebase';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const history = useNavigate();
+    const [isLoading, setIsLoading] = useState(false);
 
     const signIn = (event) => {
+        setIsLoading(true);
         event.preventDefault();
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                history(-1);
+                setIsLoading(false);
             })
             .catch((error) => {
-                console.log(error.message)
+                setIsLoading(false);
+                alert(error.message)
             })
     }
+
+
 
     return (
         <div className='column auth_cont'>
@@ -32,7 +35,7 @@ const Login = () => {
                 }}></div>
             <h2>Welcome Back</h2>
             <p className='section_text'>Sign in to continue</p>
-            <form onSubmit={signIn}>
+            <form onSubmit={isLoading ? () => { } : signIn}>
                 {/* The email input field section */}
                 <div className='field row'>
                     <i className='material-symbols-outlined'>email</i>
@@ -51,7 +54,13 @@ const Login = () => {
                 </div>
 
                 <p className='price_format'>Forgot Password?</p>
-                <button className="add" type='submit'>Login</button>
+
+                {/* The Login button */}
+                <button className="add" type='submit'
+                    style={{
+                        backgroundColor: isLoading ? '#d0d0d0' : '',
+                        boxShadow: isLoading ? 'none' : ''
+                    }}>Login</button>
             </form>
             <p style={{ margin: '10px 0', fontSize: '10px' }}>or</p>
             <GoogleButton />

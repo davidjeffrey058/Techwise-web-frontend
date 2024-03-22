@@ -100,6 +100,19 @@
     border-radius: 5px;
 }
 
+/* Authentication page */
+.tab {
+    box-shadow: 0 1px 3px #d0d0d0;
+}
+
+.tab p {
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+    font-size: 15px;
+}
+
 /* Login page */
 .auth_cont {
     /* height: 100dvh; */

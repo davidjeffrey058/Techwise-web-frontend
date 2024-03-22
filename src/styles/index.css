@@ -170,6 +170,7 @@ header {
   background-color: #E3EBEF;
   border-radius: 50%;
   margin-right: 17px;
+  overflow: hidden;
 }
 
 .user_info {
@@ -348,4 +349,27 @@ section.p_info {
   width: 244px;
   height: 46px;
   border-radius: 5px;
+}
+
+.pp_table {
+  width: 100%;
+}
+
+
+
+.pp_table tr td {
+  width: 50%;
+  padding: 10px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 13px;
+}
+
+.pp_table tr td:first-child {
+  background-color: grey;
+  color: white;
+  font-weight: bold;
+}
+
+.pp_table tr td:last-child {
+  background-color: #d0d0d0;
 }

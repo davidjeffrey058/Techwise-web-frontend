@@ -4,7 +4,8 @@ import { signOut } from "firebase/auth";
 import auth from "../../services/firebase";
 
 const Profile = () => {
-    const { authUser } = useAuthState()
+    const { authUser } = useAuthState();
+    console.log(authUser);
     const options = [
         { icon: 'orders', label: 'My Oders' },
         { icon: 'local_activity', label: 'Vouchers', },
@@ -17,7 +18,7 @@ const Profile = () => {
             {/* User information section */}
             <div className="user_details_row">
                 <div className="profile_picture_container">
-                    <img src="" alt="" />
+                    <img src={authUser ? authUser.photoURL : ''} alt="" width={'100%'} height={'100%'} />
                 </div>
                 <div className="user_info">
                     {authUser ? <div>
@@ -25,7 +26,7 @@ const Profile = () => {
                         <p>{authUser.email}</p>
                         <button>EDIT PROFILE</button>
                     </div> :
-                        <Link to={'/login'}>
+                        <Link to={'/auth'}>
                             <button>Login</button>
                         </Link>}
                 </div>
@@ -65,8 +66,10 @@ const Profile = () => {
             <br />
             {authUser && <button className="add"
                 style={{
-                    padding: '10px 25px',
-                    fontSize: '13px',
+                    padding: '15px',
+                    fontSize: '15px',
+                    width: '110px',
+                    alignSelf: 'center'
                 }} onClick={() => signOut(auth)}>Log Out</button>}
 
         </div>
