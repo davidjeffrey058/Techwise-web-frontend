@@ -9,7 +9,6 @@ const useAuthState = () => {
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 setAuthUser(user);
-
             } else {
                 setAuthUser(null);
             }

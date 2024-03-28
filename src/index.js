@@ -12,12 +12,12 @@ import Category from './pages/navPages/category'
 import Wishlist from './pages/navPages/wishlist'
 import Profile from './pages/navPages/profile'
 import CategoryPage from "./pages/categoryPage";
-import Login from "./pages/screens/login";
 import AuthPage from "./pages/authPage";
-import SignUp from "./pages/screens/signUp";
+const { url, url2 } = require('./methods/urls');
 
 
-const url = "http://10.10.4.176:8080/techwise-api";
+// const url = "http://localhost:8080/techwise-api";
+// const url2 = "http://localhost:8080/user";
 
 const router = createBrowserRouter([
   {
@@ -35,7 +35,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/wishlist',
-        element: <Wishlist />
+        element: <Wishlist uri={url2} />
       },
       {
         path: '/profile',
@@ -55,10 +55,6 @@ const router = createBrowserRouter([
     path: '/category_page/:cat',
     element: <CategoryPage url={url} />
   },
-  // {
-  //   path: '/login',
-  //   element: <Login />
-  // },
   {
     path: '/auth',
     element: <AuthPage />,

@@ -29,7 +29,7 @@ const ProductGrid = ({ data }) => {
                                 backgroundColor: 'white',
                                 padding: '5px',
                                 borderRadius: '50%'
-                            }} />
+                            }} pid={element._id} />
                         </div>
 
                         {/* info */}

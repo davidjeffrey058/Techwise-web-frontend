@@ -5,8 +5,11 @@ import { useParams } from 'react-router-dom';
 import useFetch from '../methods/useFetch';
 import CurrencyFormat from '../methods/currencyFormat';
 import rating from '../methods/rating';
+import FavButton from '../components/favButton';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination } from 'swiper/modules';
 import 'swiper/css';
+import 'swiper/css/pagination';
 
 
 const ProductPage = ({ url }) => {
@@ -23,10 +26,14 @@ const ProductPage = ({ url }) => {
                 <section className='p_info'>
                     <div className="carousel_container">
                         <Swiper
+                            modules={[Pagination]}
                             spaceBetween={50}
                             slidesPerView={1}
                             onSlideChange={(swiper) => { setImageIndex(swiper.activeIndex) }}
                             onSwiper={(swiper) => { }}
+                            loop={true}
+                            pagination={{ el: '.swiper-pagination', clickable: true }}
+                            className='swiper_container'
                         >
                             {data.image_urls.map((image, index) => (
                                 <SwiperSlide key={index}>
@@ -34,9 +41,11 @@ const ProductPage = ({ url }) => {
                                         height={'240px'} width={'95%'} style={{ objectFit: 'cover' }} />
                                 </SwiperSlide>
                             ))}
+                            <div className="swiper-pagination"></div>
                         </Swiper>
+
                     </div>
-                    {/* indicators */}
+                    {/* indicators
                     <div style={{
                         height: '20px',
                         display: 'flex',
@@ -56,11 +65,11 @@ const ProductPage = ({ url }) => {
                                 }}></div>
                             ))
                         }
-                    </div>
+                    </div> */}
                     <div style={{ margin: '20px 15px' }}>
                         <div className='row_spc_btw'>
                             <p className="grey_text" style={{ fontSize: '20px', marginBottom: '5px' }}>{data.name}</p>
-                            <i className="material-symbols-outlined" style={{ color: "red" }}>favorite</i>
+                            <FavButton pid={data._id} />
                         </div>
                         <p className="price_format" style={{ fontSize: '18px', marginBottom: '16px' }}>{CurrencyFormat(data.price)}</p>
                         <div className="row">

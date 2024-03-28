@@ -46,9 +46,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-inline: 10px;
     height: 220px;
-    background-color: beige;
+
+
+    /* background-color: beige; */
 }
 
 .special_product i {
