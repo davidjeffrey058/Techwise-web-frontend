@@ -70,6 +70,10 @@ button {
   padding-bottom: 74px;
 }
 
+.app_div {
+  display: block;
+}
+
 .column {
   display: flex;
   flex-direction: column;
@@ -85,11 +89,15 @@ button {
   color: #0074A6;
 }
 
-header {
+header.mobile {
   background-color: #E3EBEF;
   padding: 15px 20px;
   position: sticky;
   top: 0;
+}
+
+header.laptop {
+  display: none;
 }
 
 .title_cart {
@@ -306,6 +314,12 @@ p {
   transition: all 0.15s ease-in;
 }
 
+.message {
+  width: 100px;
+  font-size: 15px;
+  padding: 8px 0;
+}
+
 .add:hover {
   background-color: #017db2;
   box-shadow: 0 2px 3px #d0d0d0;
@@ -372,4 +386,39 @@ section.p_info {
 
 .pp_table tr td:last-child {
   background-color: #d0d0d0;
+}
+
+
+
+
+/* Laptop and desktop sizes */
+@media screen and (min-width: 900px) {
+  .app_div {
+
+    width: 100%;
+  }
+
+  header.laptop {
+    display: block;
+
+  }
+
+  header.mobile {
+    display: none;
+  }
+
+  .title_cart {
+    padding: 10px 30px;
+    position: fixed;
+    width: 97%;
+    background-color: #E3EBEF;
+    top: 0;
+    z-index: 3;
+  }
+
+  .input_search {
+    width: 50%;
+  }
+
+
 }

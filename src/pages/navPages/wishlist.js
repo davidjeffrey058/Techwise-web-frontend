@@ -4,6 +4,7 @@ import CartIcon from '../../components/cartIcon';
 import useAuthState from "../../methods/authState";
 import CurrencyFormat from "../../methods/currencyFormat";
 import useFetch from "../../methods/useFetch";
+import Message from "../../components/message";
 
 const Wishlist = ({ uri }) => {
     const { authUser } = useAuthState();
@@ -14,13 +15,13 @@ const Wishlist = ({ uri }) => {
             <AppBar title={"Wishlist"} action={<CartIcon />} />
             {authUser && <div className="all_wishlists">
                 {/* Loading */}
-                {isPending && <p>Loading...</p>}
+                {isPending && <Message message={'Loading...'} />}
 
                 {/* has error */}
-                {(error && !authUser) && <p>Couldn't get data</p>}
+                {(error && !data) && <Message message={error} />}
 
                 {/* Empty wishist */}
-                {(data && data.length === 0) && <p>No Saved item</p>}
+                {(data && data.length === 0) && <Message message={'No saved item'} />}
 
                 {/* Has data */}
                 {data && data.map((element, index) => (
@@ -44,10 +45,13 @@ const Wishlist = ({ uri }) => {
 
             {/* When logged out */}
             {!authUser && <div>
-                <p>Login to get cart products</p>
-                <Link to={'/auth'}>
-                    <button className="add">Login</button>
-                </Link>
+                <Message message={'Login to access your saved items'}
+                    button={
+                        <Link to={'/auth'}>
+                            <button className="add message">Login</button>
+                        </Link>
+                    } />
+
             </div>}
         </div>
     );

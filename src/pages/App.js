@@ -11,19 +11,36 @@ function App() {
 
   return (
     <div className="App">
-      <Outlet />
-      {/* Bottom navigation */}
-      <nav className="bottom_nav">{
-        navNames.map((element) => (
-          <NavLink to={element.url} key={element.url} className={`link nav_item`}>
-            <div>
-              <i className="material-symbols-outlined">{element.icon}</i>
-              <p>{element.label}</p>
-            </div>
-          </NavLink>
+      <div className='app_div'>
 
-        ))
-      }</nav>
+        {/* Side navigation bar */}
+        <nav className="side_nav">
+          {navNames.map((element) => (
+            <NavLink to={element.url} key={element.url} className={`link nav_item`}>
+              <div>
+                <i className="material-symbols-outlined">{element.icon}</i>
+                <p>{element.label}</p>
+              </div>
+            </NavLink>
+
+          ))}
+        </nav>
+        <Outlet className={'outlet'} />
+
+        {/* Bottom navigation */}
+        <nav className="bottom_nav">{
+          navNames.map((element) => (
+            <NavLink to={element.url} key={element.url} className={`link nav_item`}>
+              <div>
+                <i className="material-symbols-outlined">{element.icon}</i>
+                <p>{element.label}</p>
+              </div>
+            </NavLink>
+
+          ))
+        }</nav>
+      </div>
+
     </div>
   );
 }

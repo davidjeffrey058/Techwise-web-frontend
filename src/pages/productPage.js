@@ -10,18 +10,24 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
+import useAuthState from '../methods/authState';
+import { url2 } from '../methods/urls';
+import Message from '../components/message'
 
 
 const ProductPage = ({ url }) => {
     const pId = useParams().id;
+    const { authUser } = useAuthState()
     const { data, error, isPending } = useFetch(`${url}/${pId}`);
-    const [imageIndex, setImageIndex] = useState(0)
+
+    const { cartList } = useFetch(`${url2}/list/${authUser && authUser.uid}`);
+
 
     return (
         <div className='bdy'>
             <AppBar title={'Details'} leading={<BackIcon />} />
-            {error && <p>{error}</p>}
-            {isPending && <p>Loading...</p>}
+            {error && <Message message={error} />}
+            {isPending && <Message message={'Loading...'} />}
             {data && <div>
                 <section className='p_info'>
                     <div className="carousel_container">
@@ -29,7 +35,7 @@ const ProductPage = ({ url }) => {
                             modules={[Pagination]}
                             spaceBetween={50}
                             slidesPerView={1}
-                            onSlideChange={(swiper) => { setImageIndex(swiper.activeIndex) }}
+                            onSlideChange={(swiper) => { }}
                             onSwiper={(swiper) => { }}
                             loop={true}
                             pagination={{ el: '.swiper-pagination', clickable: true }}

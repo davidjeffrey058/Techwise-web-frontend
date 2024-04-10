@@ -12,7 +12,7 @@ const useFetch = (url, method, body) => {
             body: body,
         })
             .then(response => {
-                if (!response.ok) {
+                if (response.status !== 200) {
                     throw Error('Could not fetch data for that resource');
                 }
                 return response.json()
