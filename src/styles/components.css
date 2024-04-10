@@ -199,6 +199,9 @@ i.star {
     .aft_head {
         margin-left: 70px;
         display: block;
+        height: 90vh;
+        overflow-y: scroll;
+        scrollbar-width: none;
     }
 
     .special_img {

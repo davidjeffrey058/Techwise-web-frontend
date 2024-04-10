@@ -394,8 +394,11 @@ section.p_info {
 /* Laptop and desktop sizes */
 @media screen and (min-width: 900px) {
   .app_div {
-
     width: 100%;
+  }
+
+  .bdy {
+    padding-bottom: 0;
   }
 
   header.laptop {
@@ -418,6 +421,35 @@ section.p_info {
 
   .input_search {
     width: 50%;
+  }
+
+  .cat_grid {
+    display: none;
+  }
+
+
+  .row.cont {
+    width: 100%;
+    align-items: start;
+  }
+
+  .cat_option_cont {
+    width: 250px;
+    padding: 10px 10px 0 0;
+    border-right: 1px solid #d0d0d0;
+    height: 90vh;
+    overflow-y: scroll;
+    scrollbar-width: none;
+  }
+
+  .cat_option_cont .card {
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  .cgrid {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    width: auto;
   }
 
 

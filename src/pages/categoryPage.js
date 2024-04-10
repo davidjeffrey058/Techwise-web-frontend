@@ -5,14 +5,14 @@ import BackIcon from '../components/backIcon'
 import ProductGrid from '../components/productGrid'
 import useFetch from '../methods/useFetch'
 
-const CategoryPage = ({ url }) => {
+const CategoryPage = ({ url, customParam, showAppBar = true }) => {
     const param = useParams();
-    const { data, error, isPending } = useFetch(`${url}/category/${param.cat}`);
+    const { data, error, isPending } = useFetch(`${url}/category/${customParam || param.cat}`);
 
     // console.log(data)
     return (
         <div>
-            <AppBar title={param.cat} leading={<BackIcon />} />
+            {showAppBar && <AppBar title={param.cat} leading={<BackIcon />} />}
             {isPending && <div>Loading...</div>}
             {error && <div>{error}</div>}
             {data && <ProductGrid data={data} />}

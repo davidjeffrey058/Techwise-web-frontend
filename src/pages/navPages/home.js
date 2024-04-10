@@ -19,6 +19,7 @@ const Home = ({ title, url }) => {
                     <i className="material-symbols-outlined">chevron_right</i> */}
 
                     <Swiper
+                        autoplay={true}
                         spaceBetween={10}
                         slidesPerView={window.screen.width > 890 ? 3 : 1}
                         effect="coverflow"

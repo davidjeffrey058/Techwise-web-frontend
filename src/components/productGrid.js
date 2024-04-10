@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import FavButton from './favButton'
 const ProductGrid = ({ data }) => {
     return (
-        <div className='gridview' style={{ gap: '5px', margin: '10px' }}>
+        <div className='gridview cgrid' style={{ gap: '5px', margin: '10px' }}>
             {data.map((element, index) => (
                 <Link className='link' to={`/product_page/${element._id}`} key={index}>
                     <div className='card hover' key={index}
@@ -14,7 +14,6 @@ const ProductGrid = ({ data }) => {
                         }}>
                         {/* image */}
                         <div style={{
-                            width: '100%',
                             aspectRatio: '1.5',
                             backgroundColor: '#d0d0d0',
                             position: 'relative'
