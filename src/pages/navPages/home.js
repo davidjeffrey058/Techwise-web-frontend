@@ -2,14 +2,22 @@ import Head from "../../components/head";
 import ProductLayout from "../../components/productLayout";
 import useFetch from "../../methods/useFetch";
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Navigation, EffectCoverflow, Mousewheel } from 'swiper/modules';
+import { Pagination, Navigation, EffectCards, Mousewheel } from 'swiper/modules';
 import 'swiper/swiper-bundle.css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import 'swiper/css/effect-coverflow'
+import { useEffect, useState } from "react";
 
 const Home = ({ title, url }) => {
     const { data: products, error, isPending } = useFetch(url);
+    const [screenWidth, setScreenWidth] = useState(window.screen.width);
+
+    useEffect(() => {
+        setScreenWidth(window.screen.availWidth);
+    }, []);
+
+    console.log(screenWidth);
     return (
         <div className="bdy">
             <Head title={title} />
@@ -19,14 +27,15 @@ const Home = ({ title, url }) => {
                     <i className="material-symbols-outlined">chevron_right</i> */}
 
                     <Swiper
+                        style={{ padding: '10px 10px 20px 5px' }}
                         autoplay={true}
                         spaceBetween={10}
-                        slidesPerView={window.screen.width > 890 ? 3 : 1}
+                        slidesPerView={screenWidth > 890 ? 3 : 1}
                         effect="coverflow"
                         centeredSlides={true}
                         grabCursor={true}
                         loop={true}
-                        modules={[EffectCoverflow, Navigation, Pagination, Mousewheel]}
+                        modules={[EffectCards, Navigation, Pagination, Mousewheel]}
                         mousewheel={{ enabled: true, forceToAxis: true }}
                         pagination={{ el: '.swiper-pagination', clickable: true }}
                         className="swiper_container"
@@ -45,7 +54,7 @@ const Home = ({ title, url }) => {
                                     backgroundPosition: 'center',
                                     backgroundAttachment: 'fixed',
                                     backgroundColor: 'grey'
-                                }}>
+                                }} key={index}>
                                 </div>
                             </SwiperSlide>
                         ))}
@@ -56,7 +65,8 @@ const Home = ({ title, url }) => {
                             <div className="swiper-button-next slider-arrow">
                                 <ion-icon name='arrow-forward-outline'></ion-icon>
                             </div>
-                            <div className="swiper-pagination"></div>
+                            <div className="swiper-pagination"
+                                style={{ bottom: '-1px' }}></div>
                         </div>
                     </Swiper>
 

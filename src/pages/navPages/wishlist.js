@@ -13,35 +13,40 @@ const Wishlist = ({ uri }) => {
     return (
         <div className="bdy wishlist">
             <AppBar title={"Wishlist"} action={<CartIcon />} />
-            {authUser && <div className="all_wishlists">
-                {/* Loading */}
-                {isPending && <Message message={'Loading...'} />}
+            <div className="aft_head">
+                {authUser && <div className="all_wishlists">
+                    {/* Loading */}
+                    {isPending && <Message message={'Loading...'} />}
 
-                {/* has error */}
-                {(error && !data) && <Message message={error} />}
+                    {/* has error */}
+                    {(error && !data) && <Message message={error} />}
 
-                {/* Empty wishist */}
-                {(data && data.length === 0) && <Message message={'No saved item'} />}
+                    {/* Empty wishist */}
+                    {(data && data.length === 0) && <Message message={'No saved item'} />}
 
-                {/* Has data */}
-                {data && data.map((element, index) => (
-                    <Link to={'/product_page/' + element._id} className="link" key={index}>
-                        <div className="wishlist_container hover" >
-                            <div className="w_info_row">
-                                <img src={element.image_urls[0]} alt="img" style={{ objectFit: 'cover' }} />
-                                <div>
-                                    <p className="grey_text">{element.name}</p>
-                                    <p className="price_format">{CurrencyFormat(element.price)}</p>
+                    {/* Has data */}
+                    {data && <div className="wish_grid">
+                        {data.map((element, index) => (
+                            <Link to={'/product_page/' + element._id} className="link" key={index}>
+                                <div className="wishlist_container hover" >
+                                    <div className="w_info_row">
+                                        <img src={element.image_urls[0]} alt="img" style={{ objectFit: 'cover' }} />
+                                        <div>
+                                            <p className="grey_text">{element.name}</p>
+                                            <p className="price_format">{CurrencyFormat(element.price)}</p>
+                                        </div>
+                                    </div>
+                                    <div className="wb_info_row">
+                                        <button className="del">REMOVE</button>
+                                        <button className="add">ADD TO CART</button>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="wb_info_row">
-                                <button className="del">REMOVE</button>
-                                <button className="add">ADD TO CART</button>
-                            </div>
-                        </div>
-                    </Link>
-                ))}
-            </div>}
+                            </Link>
+                        ))}
+                    </div>}
+                </div>}
+            </div>
+
 
             {/* When logged out */}
             {!authUser && <div>

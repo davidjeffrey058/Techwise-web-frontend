@@ -158,6 +158,7 @@ header.laptop {
 
 /* Profile page */
 .prf {
+  /* width: 100%; */
   padding: 30px 20px 0 30px;
   background-color: #F8F8F8;
   display: flex;
@@ -165,6 +166,8 @@ header.laptop {
   align-items: stretch;
   height: 90dvh;
 }
+
+
 
 .user_details_row {
   display: flex;
@@ -225,6 +228,7 @@ p {
   border-radius: 9px;
   overflow: hidden;
   background-color: white;
+  margin-bottom: 20px;
 }
 
 .option {
@@ -388,6 +392,17 @@ section.p_info {
   background-color: #d0d0d0;
 }
 
+.row.cont {
+  display: none;
+}
+
+.prf_options,
+.wish_grid {
+  display: block;
+}
+
+
+
 
 
 
@@ -423,12 +438,11 @@ section.p_info {
     width: 50%;
   }
 
-  .cat_grid {
-    display: none;
-  }
 
 
-  .row.cont {
+
+  /* .row.cont {
+    display: flex;
     width: 100%;
     align-items: start;
   }
@@ -450,6 +464,20 @@ section.p_info {
   .cgrid {
     grid-template-columns: 1fr 1fr 1fr 1fr;
     width: auto;
+  } */
+  .all_wishlists .gridview {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .gridview {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+
+  .prf_options,
+  .wish_grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
   }
 
 

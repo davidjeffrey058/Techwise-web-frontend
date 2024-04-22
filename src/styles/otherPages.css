@@ -101,6 +101,8 @@
 }
 
 /* Authentication page */
+
+
 .tab {
     box-shadow: 0 1px 3px #d0d0d0;
 }
@@ -152,4 +154,27 @@
     padding: 10px;
     margin-bottom: 20px;
     border: none;
+}
+
+
+@media screen and (min-width: 700px) {
+    .auth_bdy {
+        height: 100dvh;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .auth_wrap {
+        min-width: 400px;
+        max-width: 500px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 1px 3px #d0d0d0;
+    }
+
+    .tab {
+        box-shadow: none;
+    }
 }

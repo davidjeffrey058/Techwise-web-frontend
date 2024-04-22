@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import AppBar from "../../components/appBar";
 import CartIcon from '../../components/cartIcon';
-import { useState } from "react";
-import CategoryPage from "../categoryPage";
-import { url } from "../../methods/urls";
+// import { useState } from "react";
+// import CategoryPage from "../categoryPage";
+// import { url } from "../../methods/urls";
 
 const Category = () => {
     const categories = [
@@ -18,11 +18,11 @@ const Category = () => {
         { imageUrl: "cat_images/moderm.png", name: "Networking" },
     ]
 
-    const [selectedIndex, setSelectedIndex] = useState(0);
+    // const [selectedIndex, setSelectedIndex] = useState(0);
 
-    function onOptionClicked(index) {
-        setSelectedIndex(index);
-    }
+    // function onOptionClicked(index) {
+    //     setSelectedIndex(index);
+    // }
 
     return (
         <div className="bdy">
@@ -40,7 +40,8 @@ const Category = () => {
                     ))}
                 </div>
 
-                <div className="row cont">
+                {/* The layout for the laptop and desktop*/}
+                {/* <div className="row cont">
                     <div className="cat_option_cont">
                         {categories.map((element, index) => (
                             <div className="card hover row" key={index}
@@ -53,7 +54,7 @@ const Category = () => {
                     </div>
                     <CategoryPage url={url} showAppBar={false} customParam={categories[selectedIndex].name} />
                     <div></div>
-                </div>
+                </div> */}
             </div>
 
         </div>

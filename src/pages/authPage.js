@@ -18,19 +18,22 @@ const AuthPage = () => {
         color: '#0074A6'
     }
     return (
-        <div>
-            <div className="row tab">
-                <p className='hover'
-                    style={selectedIndex === 0 ? style : {}}
-                    onClick={() => setSelectedIndex(0)}>Login</p>
-                <p className='hover'
-                    style={selectedIndex === 1 ? style : {}}
-                    onClick={() => setSelectedIndex(1)}>Sign Up</p>
+        <div className="auth_bdy">
+            <div className='auth_wrap'>
+                <div className="row tab">
+                    <p className='hover'
+                        style={selectedIndex === 0 ? style : {}}
+                        onClick={() => setSelectedIndex(0)}>Login</p>
+                    <p className='hover'
+                        style={selectedIndex === 1 ? style : {}}
+                        onClick={() => setSelectedIndex(1)}>Sign Up</p>
 
+                </div>
+                {selectedIndex === 0 && <Login />}
+                {selectedIndex === 1 && <SignUp />}
             </div>
-            {selectedIndex === 0 && <Login />}
-            {selectedIndex === 1 && <SignUp />}
         </div>
+
     )
 }
 
