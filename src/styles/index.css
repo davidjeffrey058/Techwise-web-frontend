@@ -347,6 +347,7 @@ p {
 
 section.p_info {
   height: auto;
+  display: block;
 }
 
 .p_action {
@@ -360,14 +361,14 @@ section.p_info {
   background-color: white;
 }
 
-.p_action button {
+/* .p_action button {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 244px;
   height: 46px;
   border-radius: 5px;
-}
+} */
 
 .pp_table {
   width: 100%;
@@ -392,6 +393,17 @@ section.p_info {
   background-color: #d0d0d0;
 }
 
+.pp_table.dsk,
+.section_text.dsk,
+.add.row.dsk {
+  display: none;
+}
+
+.pp_table.mb,
+.section_text.mb {
+  display: block;
+}
+
 .row.cont {
   display: none;
 }
@@ -401,6 +413,9 @@ section.p_info {
   display: block;
 }
 
+/* .add.row {
+  display: none;
+} */
 
 
 
@@ -480,5 +495,33 @@ section.p_info {
     gap: 20px;
   }
 
+  section.p_info {
+    display: flex;
+    overflow-y: scroll;
+    justify-content: center;
+    align-items: center;
+  }
 
+  .carousel_container {
+    width: 50%;
+    height: 500px;
+  }
+
+  .pp_table.dsk,
+  .section_text.dsk {
+    display: block;
+  }
+
+  .pp_table.mb,
+  .section_text.mb {
+    display: none;
+  }
+
+  .p_action.row {
+    display: none;
+  }
+
+  .add.row.dsk {
+    display: flex;
+  }
 }

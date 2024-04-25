@@ -5,6 +5,7 @@ import useAuthState from "../../methods/authState";
 import CurrencyFormat from "../../methods/currencyFormat";
 import useFetch from "../../methods/useFetch";
 import Message from "../../components/message";
+import AddCartButton from "../../components/addCartButton";
 
 const Wishlist = ({ uri }) => {
     const { authUser } = useAuthState();
@@ -38,7 +39,8 @@ const Wishlist = ({ uri }) => {
                                     </div>
                                     <div className="wb_info_row">
                                         <button className="del">REMOVE</button>
-                                        <button className="add">ADD TO CART</button>
+                                        {/* <button className="add">ADD TO CART</button> */}
+                                        <AddCartButton pid={element._id} padding={'10px 10px'} />
                                     </div>
                                 </div>
                             </Link>

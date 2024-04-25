@@ -1,15 +1,18 @@
 /* Cart page */
+.cart_bdy {
+    display: block;
+}
 
 .cart_p_container {
     /* background-color: grey; */
-    height: 50vh;
+    height: 50dvh;
     overflow-y: scroll;
     scrollbar-width: none;
     padding: 10px;
 }
 
 .summary_section {
-    height: min-content;
+    /* height: min-content; */
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -176,5 +179,19 @@
 
     .tab {
         box-shadow: none;
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .cart_bdy {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 70dvh;
+    }
+
+    .cart_p_container,
+    .summary_section {
+        width: 40%;
     }
 }

@@ -8,6 +8,15 @@ import CurrencyFormat from '../methods/currencyFormat';
 import { Link } from 'react-router-dom';
 
 function Cart({ url }) {
+
+    // function readCartData(data, cartData) {
+    //     data.forEach(value => {
+    //         cartData.push(value);
+    //     });
+    //     console.log(cartData);
+    // }
+    // let [cartData, setCarData] = useFetch();
+
     const { authUser } = useAuthState();
     const { data, isPending, error } = useFetch(`${url}/cart/${authUser && authUser.uid}`);
     data && console.log(data);
@@ -15,7 +24,7 @@ function Cart({ url }) {
         <div>
 
             <AppBar title={'Cart'} leading={<BackIcon />} />
-            {authUser && <div>
+            {authUser && <div style={{ height: '90dvh' }}>
                 {/* When waiting */}
                 {isPending && <Message message={'Loading...'} />}
 
@@ -26,7 +35,7 @@ function Cart({ url }) {
                 {(!data && !isPending) && <Message message={error} />}
 
                 {/* When data is available */}
-                {(data && data.length > 0) && <div>
+                {(data && data.length > 0) && <div className='cart_bdy'>
 
                     <div className="cart_p_container">
                         {data.map((element, index) => (
@@ -49,7 +58,6 @@ function Cart({ url }) {
                             </Link>
                         ))}
                     </div>
-
 
 
                     <div className="summary_section">

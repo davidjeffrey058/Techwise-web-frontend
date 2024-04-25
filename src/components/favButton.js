@@ -8,7 +8,8 @@ const FavButton = ({ pid, styles }) => {
     const { authUser } = useAuthState();
     const { data } = useFetch(`${url2}/list/${authUser && authUser.uid}`);
 
-    const [isAddedToWishlist, setIsAddedToWishlist] = useState(false)
+    const [isAddedToWishlist, setIsAddedToWishlist] = useState(false);
+
     useEffect(() => {
         data && setIsAddedToWishlist(addedToWishlist(pid, data))
     }, [pid, data])

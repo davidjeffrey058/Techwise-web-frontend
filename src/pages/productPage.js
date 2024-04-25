@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+// import React, { useState } from 'react'
 import AppBar from '../components/appBar';
 import BackIcon from '../components/backIcon';
 import { useParams } from 'react-router-dom';
@@ -13,6 +13,8 @@ import 'swiper/css/pagination';
 import useAuthState from '../methods/authState';
 import { url2 } from '../methods/urls';
 import Message from '../components/message'
+import AddCartButton from '../components/addCartButton';
+import CartIcon from '../components/cartIcon';
 
 
 const ProductPage = ({ url }) => {
@@ -20,12 +22,12 @@ const ProductPage = ({ url }) => {
     const { authUser } = useAuthState()
     const { data, error, isPending } = useFetch(`${url}/${pId}`);
 
-    const { cartList } = useFetch(`${url2}/list/${authUser && authUser.uid}`);
+    useFetch(`${url2}/list/${authUser && authUser.uid}`);
 
 
     return (
         <div className='bdy'>
-            <AppBar title={'Details'} leading={<BackIcon />} />
+            <AppBar title={'Details'} leading={<BackIcon />} action={<CartIcon />} />
             {error && <Message message={error} />}
             {isPending && <Message message={'Loading...'} />}
             {data && <div>
@@ -44,34 +46,14 @@ const ProductPage = ({ url }) => {
                             {data.image_urls.map((image, index) => (
                                 <SwiperSlide key={index}>
                                     <img className='card' src={image} alt={`${data.name} (img ${index + 1})`}
-                                        height={'240px'} width={'95%'} style={{ objectFit: 'cover' }} />
+                                        height={'100%'} width={'95%'} style={{ objectFit: 'cover' }} />
                                 </SwiperSlide>
                             ))}
                             <div className="swiper-pagination"></div>
                         </Swiper>
 
                     </div>
-                    {/* indicators
-                    <div style={{
-                        height: '20px',
-                        display: 'flex',
-                        width: '100%',
-                        justifyContent: 'center',
-                        alignItems: 'center'
-                    }}>
-                        {
-                            data.image_urls.map((element, index) => (
-                                <div key={index} style={{
-                                    width: index === imageIndex ? '10px' : '7px',
-                                    height: index === imageIndex ? '10px' : '7px',
-                                    backgroundColor: index === imageIndex ? '#0074A6' : ' #d0d0d0',
-                                    marginInline: '5px',
-                                    borderRadius: '50%',
-                                    transition: 'all 0.2s ease-in'
-                                }}></div>
-                            ))
-                        }
-                    </div> */}
+
                     <div style={{ margin: '20px 15px' }}>
                         <div className='row_spc_btw'>
                             <p className="grey_text" style={{ fontSize: '20px', marginBottom: '5px' }}>{data.name}</p>
@@ -85,8 +67,10 @@ const ProductPage = ({ url }) => {
                         </div>
                         <p className="section_text" style={{ marginLeft: '0' }}>Description</p>
                         <p className='desc_text'>{data.description}</p>
-                        <p className="section_text" style={{ marginLeft: '0' }}>Product Properties</p>
-                        <table className='pp_table'>
+                        <p className="section_text mb" style={{ marginLeft: '0' }}>Product Properties</p>
+
+                        {/* Product properties */}
+                        <table className='pp_table mb'>
                             {Object.keys(data.key_properties).map((key, index) => (
                                 <tr>
                                     <td>{key}</td>
@@ -94,15 +78,34 @@ const ProductPage = ({ url }) => {
                                 </tr>
                             ))}
                         </table>
+
+                        {/* <button className="add row" style={{ padding: '10px 20px' }}>
+                            <i className="material-symbols-outlined " style={{ marginRight: '5px' }}>add_shopping_cart</i>
+                            ADD TO CART
+                        </button> */}
+
+                        <AddCartButton pid={pId} className={'dsk'} showIcon={true} />
                     </div>
                 </section>
+                <p className="section_text dsk" style={{ marginLeft: '0' }}>Product Properties</p>
+
+                {/* Product properties */}
+                <table className='pp_table dsk'>
+                    {Object.keys(data.key_properties).map((key, index) => (
+                        <tr>
+                            <td>{key}</td>
+                            <td>{data.key_properties[key]}</td>
+                        </tr>
+                    ))}
+                </table>
 
                 {/* Add to cart */}
                 <div className="p_action row">
-                    <button className="add">
+                    {/* <button className="add">
                         <i className="material-symbols-outlined " style={{ marginRight: '5px' }}>add_shopping_cart</i>
                         ADD TO CART
-                    </button>
+                    </button> */}
+                    <AddCartButton pid={pId} showIcon={true} />
                 </div>
             </div>}
 

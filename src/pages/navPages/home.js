@@ -15,7 +15,7 @@ const Home = ({ title, url }) => {
 
     useEffect(() => {
         setScreenWidth(window.screen.availWidth);
-    }, []);
+    }, [screenWidth]);
 
     console.log(screenWidth);
     return (
