@@ -122,9 +122,21 @@ header.laptop {
   padding-inline: 20px;
 }
 
-.input_search p {
-  margin: 0;
+#search {
+  height: 100%;
+  width: 100%;
+  outline: none;
+  border: none;
 }
+
+.search_suggest {
+  width: inherit;
+  background-color: white;
+  position: absolute;
+  margin-top: 5px;
+  width: 93%;
+}
+
 
 /* category page */
 .gridview {
@@ -178,7 +190,6 @@ header.laptop {
 .profile_picture_container {
   width: 105px;
   height: 105px;
-  /* background-color: #E3EBEF; */
   border-radius: 50%;
   margin-right: 17px;
   overflow: hidden;
@@ -523,5 +534,9 @@ section.p_info {
 
   .add.row.dsk {
     display: flex;
+  }
+
+  .search_suggest {
+    width: 400px;
   }
 }

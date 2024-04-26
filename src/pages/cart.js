@@ -16,11 +16,23 @@ function Cart({ url }) {
     //     console.log(cartData);
     // }
     // let [cartData, setCarData] = useFetch();
+    function sum(data, cartList) {
+        let amountSum = 0;
+        for (let i = 0; i < data.length; i++) {
+            amountSum += data[i].price * cartList[i].order_quantity;
+        }
+        return amountSum;
+    }
 
+    let deliveryFee = 20;
+    let promoCode = 0;
 
     const { authUser } = useAuthState();
     const { data, isPending, error } = useFetch(`${url}/cart/${authUser && authUser.uid}`);
-    data && console.log(data);
+    const { data: cartList } = useFetch(`${url}/cart/list/${authUser && authUser.uid}`);
+
+    // cartList && console.log(cartList)
+
     return (
         <div>
 
@@ -37,7 +49,7 @@ function Cart({ url }) {
                 {(!data && !isPending) && <Message message={error} />}
 
                 {/* When data is available */}
-                {(data && data.length > 0) && <div className='cart_bdy'>
+                {((data && data.length > 0) && cartList) && <div className='cart_bdy'>
 
                     <div className="cart_p_container">
                         {data.map((element, index) => (
@@ -53,9 +65,9 @@ function Cart({ url }) {
                                     <button className='del'>REMOVE</button>
                                 </div>
                                 <div className='p_qty_sec'>
-                                    <i>+</i><br />
-                                    <p>1</p><br />
-                                    <i>-</i>
+                                    <i style={{ backgroundColor: cartList[index].order_quantity === element.quantity ? '#d0d0d0' : '' }}>+</i><br />
+                                    <p>{cartList[index].order_quantity}</p><br />
+                                    <i style={{ backgroundColor: cartList[index].order_quantity < 2 ? '#d0d0d0' : '' }}>-</i>
                                 </div>
                             </Link>
                         ))}
@@ -69,20 +81,20 @@ function Cart({ url }) {
                         </div>
                         <div className="sum_row row_spc_btw">
                             <p>Cart Total</p>
-                            <p>USD1,200.00</p>
+                            <p>{CurrencyFormat(sum(data, cartList))}</p>
                         </div>
                         <div className="sum_row row_spc_btw">
                             <p>Delivery</p>
-                            <p>USD1,200.00</p>
+                            <p>{CurrencyFormat(deliveryFee)}</p>
                         </div>
                         <div className="sum_row row_spc_btw">
                             <p>Promo Discount</p>
-                            <p>USD1,200.00</p>
+                            <p>{CurrencyFormat(0)}</p>
                         </div>
                         <hr />
                         <div className="sum_row row_spc_btw">
                             <p>Sub total</p>
-                            <p>USD1,200.00</p>
+                            <p>{CurrencyFormat(sum(data, cartList) + deliveryFee + promoCode)}</p>
                         </div>
                         <button className="add">PROCEED TO CHECKOUT</button>
                     </div>

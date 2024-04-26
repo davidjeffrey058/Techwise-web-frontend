@@ -27,7 +27,7 @@ const Home = ({ title, url }) => {
                     <i className="material-symbols-outlined">chevron_right</i> */}
 
                     <Swiper
-                        style={{ padding: '10px 10px 20px 5px' }}
+                        style={{ padding: '10px 10px 20px 5px', zIndex: -1 }}
                         autoplay={true}
                         spaceBetween={10}
                         slidesPerView={screenWidth > 890 ? 3 : 1}

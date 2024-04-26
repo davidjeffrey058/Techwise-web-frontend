@@ -13,7 +13,7 @@ const useAuthState = () => {
                 setAuthUser(null);
             }
         })
-    }, [])
+    }, [authUser])
     return { authUser }
 }
 
