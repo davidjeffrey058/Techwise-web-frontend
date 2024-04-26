@@ -1,4 +1,6 @@
 import { NavLink, Outlet } from 'react-router-dom';
+import useAuthState from '../methods/authState';
+import { Link } from 'react-router-dom';
 
 
 function App() {
@@ -8,6 +10,8 @@ function App() {
     { label: 'Wishlist', icon: 'favorite', url: '/wishlist' },
     { label: 'Profile', icon: 'person', url: '/profile' },
   ];
+
+  const { authUser } = useAuthState();
 
   return (
     <div className="App">
@@ -24,6 +28,15 @@ function App() {
             </NavLink>
 
           ))}
+
+          <Link style={{ marginTop: 'auto' }} to={authUser ? '' : '/auth'}>
+            <img src={authUser && (authUser.photoURL) ? authUser.photoURL : "profile.png"}
+              alt="" width={'45px'}
+              style={{ borderRadius: '50%' }}
+              title={authUser ? `Logged in as ${authUser.email}` : 'Not logged in'}
+            />
+          </Link>
+
         </nav>
         <Outlet className={'outlet'} />
 

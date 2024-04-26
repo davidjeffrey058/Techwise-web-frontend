@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import AppBar from '../components/appBar'
 import BackIcon from '../components/backIcon';
 import useFetch from '../methods/useFetch';
@@ -17,6 +17,7 @@ function Cart({ url }) {
     // }
     // let [cartData, setCarData] = useFetch();
 
+
     const { authUser } = useAuthState();
     const { data, isPending, error } = useFetch(`${url}/cart/${authUser && authUser.uid}`);
     data && console.log(data);
@@ -25,6 +26,7 @@ function Cart({ url }) {
 
             <AppBar title={'Cart'} leading={<BackIcon />} />
             {authUser && <div style={{ height: '90dvh' }}>
+
                 {/* When waiting */}
                 {isPending && <Message message={'Loading...'} />}
 

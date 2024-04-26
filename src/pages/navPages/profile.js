@@ -5,7 +5,7 @@ import auth from "../../services/firebase";
 
 const Profile = () => {
     const { authUser } = useAuthState();
-    console.log(authUser);
+    // console.log(authUser.photoURL);
     const options = [
         { icon: 'orders', label: 'My Oders' },
         { icon: 'local_activity', label: 'Vouchers', },
@@ -18,7 +18,7 @@ const Profile = () => {
                 {/* User information section */}
                 <div className="user_details_row">
                     <div className="profile_picture_container">
-                        <img src={authUser ? authUser.photoURL : ''} alt="" width={'100%'} height={'100%'} />
+                        <img src={authUser && (authUser.photoURL) ? authUser.photoURL : 'man.png'} alt="" width={'100%'} height={'100%'} />
                     </div>
                     <div className="user_info">
                         {authUser ? <div>
