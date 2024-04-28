@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import useAuthState from '../methods/authState'
 import { Link } from 'react-router-dom'
 import useFetch from '../methods/useFetch'
+import AddOrRemWish from '../methods/addOrRemWish'
 const { url2 } = require('../methods/urls')
 
 const FavButton = ({ pid, styles }) => {
@@ -23,6 +24,8 @@ const FavButton = ({ pid, styles }) => {
         return false;
     }
 
+
+
     function addOrRemoveWishlist(added) {
         fetch(`${url2}/list/${authUser.uid}`, {
             method: 'POST',
@@ -33,12 +36,18 @@ const FavButton = ({ pid, styles }) => {
             .catch(() => alert('Unable to add to wishlist'));
     }
 
+
+
     return (
         authUser ?
             <Link>
                 <i className={`material-symbols-outlined fav ${data && isAddedToWishlist ? 'filled' : ''}`}
                     style={styles || { color: "red" }}
-                    onClick={() => { addOrRemoveWishlist(isAddedToWishlist) }}
+                    onClick={() => {
+                        AddOrRemWish(authUser.uid, pid, true, () => {
+                            setIsAddedToWishlist(!addOrRemoveWishlist(isAddedToWishlist))
+                        }, url2);
+                    }}
                 >favorite</i>
             </Link>
 

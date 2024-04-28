@@ -8,6 +8,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import 'swiper/css/effect-coverflow'
 import { useEffect, useState } from "react";
+import Message from "../../components/message";
 
 const Home = ({ title, url }) => {
     const { data: products, error, isPending } = useFetch(url);
@@ -21,13 +22,16 @@ const Home = ({ title, url }) => {
     return (
         <div className="bdy">
             <Head title={title} />
+            {isPending && <Message message={'Loading...'} />}
+
+            {error && <Message message={error} />}
             {products && <div className="aft_head">
                 <div className="special_product">
                     {/* <i className="material-symbols-outlined">chevron_left</i>
                     <i className="material-symbols-outlined">chevron_right</i> */}
 
                     <Swiper
-                        style={{ padding: '10px 10px 20px 5px', zIndex: -1 }}
+                        style={{ padding: '10px 10px 20px 5px', zIndex: 1 }}
                         autoplay={true}
                         spaceBetween={10}
                         slidesPerView={screenWidth > 890 ? 3 : 1}

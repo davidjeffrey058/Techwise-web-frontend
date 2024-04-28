@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import GoogleButton from '../../components/googleButton';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import auth from '../../services/firebase';
+import addUser from '../../methods/addUser';
 
 const SignUp = () => {
     const [name, setName] = useState('');
@@ -14,9 +15,11 @@ const SignUp = () => {
         event.preventDefault();
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                updateProfile(userCredential.user, {
+                const user = userCredential.user;
+                updateProfile(user, {
                     displayName: name
                 });
+                addUser(user);
             }).then(() => {
                 setIsLoading(false);
             }).catch((error) => {

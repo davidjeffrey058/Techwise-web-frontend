@@ -1,15 +1,35 @@
 import { Link } from "react-router-dom";
-import AppBar from "../../components/appBar"
+import React, { useState, useEffect } from "react";
+import AppBar from "../../components/appBar";
 import CartIcon from '../../components/cartIcon';
 import useAuthState from "../../methods/authState";
 import CurrencyFormat from "../../methods/currencyFormat";
-import useFetch from "../../methods/useFetch";
 import Message from "../../components/message";
 import AddCartButton from "../../components/addCartButton";
+import AddOrRemWish from "../../methods/addOrRemWish";
+import { url2 } from "../../methods/urls";
 
 const Wishlist = ({ uri }) => {
+    const [wishData, setwishData] = useState(null);
+    const [isPending, setIsPending] = useState(true);
+    const [error, setError] = useState(null);
     const { authUser } = useAuthState();
-    const { data, isPending, error } = useFetch(`${uri}/${authUser && authUser.uid}`);
+
+
+    useEffect(() => {
+        if (authUser) {
+            fetch(`${uri}/${authUser.uid}`)
+                .then((res) => res.json())
+                .then(data => {
+                    setIsPending(false);
+                    setwishData(data);
+                })
+                .catch(error => {
+                    setIsPending(false);
+                    setError(error.message);
+                });
+        }
+    }, [uri, authUser]);
 
     return (
         <div className="bdy wishlist">
@@ -20,16 +40,17 @@ const Wishlist = ({ uri }) => {
                     {isPending && <Message message={'Loading...'} />}
 
                     {/* has error */}
-                    {(error && !data) && <Message message={error} />}
+                    {(error && !wishData) && <Message message={error} />}
 
                     {/* Empty wishist */}
-                    {(data && data.length === 0) && <Message message={'No saved item'} />}
+                    {(wishData && wishData.length === 0) && <Message message={'No saved item'} />}
 
                     {/* Has data */}
-                    {data && <div className="wish_grid">
-                        {data.map((element, index) => (
-                            <Link to={'/product_page/' + element._id} className="link" key={index}>
-                                <div className="wishlist_container hover" >
+                    {wishData && <div className="wish_grid">
+                        {wishData.map((element, index) => (
+
+                            <div className="wishlist_container" >
+                                <Link to={'/product_page/' + element._id} className="link">
                                     <div className="w_info_row">
                                         <img src={element.image_urls[0]} alt="img" style={{ objectFit: 'cover' }} />
                                         <div>
@@ -37,18 +58,23 @@ const Wishlist = ({ uri }) => {
                                             <p className="price_format">{CurrencyFormat(element.price)}</p>
                                         </div>
                                     </div>
-                                    <div className="wb_info_row">
-                                        <button className="del">REMOVE</button>
-                                        {/* <button className="add">ADD TO CART</button> */}
-                                        <AddCartButton pid={element._id} padding={'10px 10px'} />
-                                    </div>
+                                </Link>
+                                <div className="wb_info_row">
+                                    <button className="del"
+                                        onClick={() => {
+                                            AddOrRemWish(authUser.uid, element._id, true, () => {
+                                                setwishData(wishData.filter(doc => doc._id !== element._id))
+                                            }, url2)
+                                        }}>REMOVE</button>
+                                    {/* <button className="add">ADD TO CART</button> */}
+                                    <AddCartButton pid={element._id} padding={'10px 10px'} />
                                 </div>
-                            </Link>
+                            </div>
+
                         ))}
                     </div>}
                 </div>}
             </div>
-
 
             {/* When logged out */}
             {!authUser && <div>
@@ -58,7 +84,6 @@ const Wishlist = ({ uri }) => {
                             <button className="add message">Login</button>
                         </Link>
                     } />
-
             </div>}
         </div>
     );

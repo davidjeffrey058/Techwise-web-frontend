@@ -94,6 +94,7 @@ header.mobile {
   padding: 15px 20px;
   position: sticky;
   top: 0;
+  z-index: 2;
 }
 
 header.laptop {
@@ -134,7 +135,10 @@ header.laptop {
   background-color: white;
   position: absolute;
   margin-top: 5px;
-  width: 93%;
+  width: 90%;
+  max-height: 325px;
+  overflow-y: scroll;
+  scrollbar-width: none;
 }
 
 
@@ -193,6 +197,11 @@ header.laptop {
   border-radius: 50%;
   margin-right: 17px;
   overflow: hidden;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  justify-content: center;
+  align-items: center;
 }
 
 .user_info {
@@ -444,7 +453,7 @@ section.p_info {
 
   header.laptop {
     display: block;
-
+    z-index: 2;
   }
 
   header.mobile {

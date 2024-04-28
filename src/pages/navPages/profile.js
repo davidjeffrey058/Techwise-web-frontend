@@ -2,23 +2,37 @@ import { Link } from "react-router-dom";
 import useAuthState from '../../methods/authState';
 import { signOut } from "firebase/auth";
 import auth from "../../services/firebase";
+import SplitName from "../../methods/splitName";
 
 const Profile = () => {
     const { authUser } = useAuthState();
-    // console.log(authUser.photoURL);
     const options = [
         { icon: 'orders', label: 'My Oders' },
         { icon: 'local_activity', label: 'Vouchers', },
         { icon: 'history', label: 'Recently Viewed' },
         { icon: 'inbox', label: 'Inbox' }
     ];
+
     return (
         <div className="bdy prf">
             <div className="aft_head">
                 {/* User information section */}
                 <div className="user_details_row">
-                    <div className="profile_picture_container">
-                        <img src={authUser && (authUser.photoURL) ? authUser.photoURL : 'man.png'} alt="" width={'100%'} height={'100%'} />
+                    <div className="profile_picture_container row"
+                        style={{
+                            backgroundImage: authUser ? `url(${authUser.photoURL})` : 'url(profile.png)',
+                            backgroundColor: authUser && !authUser.photoURL ? 'orange' : ''
+                        }}>
+                        {/* <img 
+                        src={authUser ? authUser.photoURL || '' : 'profile.png'} 
+                        alt="" 
+                        width={'100%'} height={'100%'} 
+                        style={}/> */}
+                        <p style={{
+                            fontSize: '45px',
+                            color: 'white',
+                            fontWeight: 'bold'
+                        }}>{(authUser && !authUser.photoURL && authUser.displayName) && SplitName(authUser.displayName)}</p>
                     </div>
                     <div className="user_info">
                         {authUser ? <div>

@@ -1,12 +1,14 @@
 import { signInWithPopup, GoogleAuthProvider, } from 'firebase/auth'
 import React from 'react';
 import auth from '../services/firebase';
+import addUser from '../methods/addUser';
 
 const GoogleButton = ({ width }) => {
     const signInWithGoogle = () => {
         signInWithPopup(auth, new GoogleAuthProvider())
             .then((userCredential) => {
-                // console.log(userCredential);
+                const user = userCredential.user;
+                addUser(user);
             })
             .catch((error) => {
                 alert('Couldn\'t sign in');

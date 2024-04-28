@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 import BackIcon from '../components/backIcon'
 import ProductGrid from '../components/productGrid'
 import useFetch from '../methods/useFetch'
+import Message from '../components/message'
 
 const CategoryPage = ({ url, customParam, showAppBar = true }) => {
     const param = useParams();
@@ -13,8 +14,8 @@ const CategoryPage = ({ url, customParam, showAppBar = true }) => {
     return (
         <div>
             {showAppBar && <AppBar title={param.cat} leading={<BackIcon />} />}
-            {isPending && <div>Loading...</div>}
-            {error && <div>{error}</div>}
+            {isPending && <Message message={'Loading'} />}
+            {error && <Message message={error} />}
             {data && <ProductGrid data={data} />}
         </div>
     )
