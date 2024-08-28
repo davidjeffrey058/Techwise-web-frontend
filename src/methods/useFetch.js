@@ -6,7 +6,6 @@ const useFetch = (url, method, body) => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        // const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
         fetch(url, {
             method: method,
             headers: { "Content-Type": "application/json" },
@@ -29,7 +28,7 @@ const useFetch = (url, method, body) => {
             })
     }, [url, method, body]);
 
-    return { data, isPending, error }
+    return { data, isPending, error, setData }
 }
 
 export default useFetch;

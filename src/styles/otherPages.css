@@ -91,6 +91,7 @@
 .p_qty_sec i {
     background-color: #0074A6;
     color: white;
+    cursor: pointer;
 }
 
 .p_qty_sec i,

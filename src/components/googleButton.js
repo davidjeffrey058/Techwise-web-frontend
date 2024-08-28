@@ -3,7 +3,7 @@ import React from 'react';
 import auth from '../services/firebase';
 import addUser from '../methods/addUser';
 
-const GoogleButton = ({ width }) => {
+const GoogleButton = async ({ width }) => {
     const signInWithGoogle = () => {
         signInWithPopup(auth, new GoogleAuthProvider())
             .then((userCredential) => {

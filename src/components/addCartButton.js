@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { url2 } from '../methods/urls';
 import useFetch from '../methods/useFetch';
+import AddOrRemCart from '../methods/addOrRemCart';
 
 const AddCartButton = ({ pid, className, showIcon = false, padding }) => {
     const { authUser } = useAuthState();
@@ -14,7 +15,7 @@ const AddCartButton = ({ pid, className, showIcon = false, padding }) => {
         data && setIsAddedToCart(addedToCart(pid, data))
     }, [data, pid])
 
-    data && console.log(data);
+    // data && console.log(data);
 
     function addedToCart(pid, list) {
         for (let i = 0; i < list.length; i++) {
@@ -25,22 +26,12 @@ const AddCartButton = ({ pid, className, showIcon = false, padding }) => {
         return false;
     }
 
-    function addOrRemoveCart(added) {
-        fetch(`${url2}/cart/${authUser.uid}`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ product: pid, added: added })
-        }).then(Response => setIsAddedToCart(!added))
-
-            .catch(() => alert('Unable to add to wishlist'));
-    }
-
     return (
         authUser ?
             <button className={`add row ${className}`} style={{
                 padding: padding || '10px 20px',
                 backgroundColor: isAddedToCart ? 'red' : ''
-            }} onClick={() => addOrRemoveCart(isAddedToCart)}>
+            }} onClick={() => AddOrRemCart(url2, authUser.uid, pid, isAddedToCart, () => setIsAddedToCart(!isAddedToCart))}>
                 {showIcon && <i className="material-symbols-outlined " style={{ marginRight: '5px' }}>add_shopping_cart</i>}
                 {isAddedToCart ? "REMOVE FROM CART" : "ADD TO CART"}
             </button>

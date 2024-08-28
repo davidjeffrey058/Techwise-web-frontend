@@ -13,6 +13,12 @@ const Profile = () => {
         { icon: 'inbox', label: 'Inbox' }
     ];
 
+    const options2 = [
+        { icon: 'House', label: 'Address Management' },
+        { icon: 'Support_Agent', label: 'Service Center' },
+        { icon: 'Rate_Review', label: 'Rate & Reviews' }
+    ]
+
     return (
         <div className="bdy prf">
             <div className="aft_head">
@@ -65,7 +71,7 @@ const Profile = () => {
                     {/* <br /> */}
 
                     <div className="options_container">
-                        {options.map((element, index) => (
+                        {options2.map((element, index) => (
                             <div className="option hover" key={index}>
                                 <i className="material-symbols-outlined">{element.icon}</i>
                                 <div className="nm_hr_arr">
@@ -73,7 +79,7 @@ const Profile = () => {
                                         <p>{element.label}</p>
                                         <i className="material-symbols-outlined">chevron_right</i>
                                     </div>
-                                    {options.indexOf(element) !== options.length - 1 && <hr color="grey" />}
+                                    {options2.indexOf(element) !== options2.length - 1 && <hr color="grey" />}
                                 </div>
                             </div>
                         ))}

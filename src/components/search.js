@@ -34,7 +34,7 @@ const Search = ({ width }) => {
             <div className="search_suggest card"
                 style={{ display: searchValue.length < 1 ? 'none' : '' }}>
                 {result && result.map((element, index) => (
-                    <Link className='hover row link'
+                    <Link className='hover row link' key={index}
                         style={{ padding: '10px', borderBottom: index === result.length - 1 ? '' : '1px solid #d0d0d0' }}
                         to={`/product_page/${element._id}`}
                     >

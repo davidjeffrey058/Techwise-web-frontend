@@ -1,4 +1,3 @@
-import React, { useState } from 'react'
 import AppBar from '../components/appBar'
 import BackIcon from '../components/backIcon';
 import useFetch from '../methods/useFetch';
@@ -6,20 +5,14 @@ import useAuthState from '../methods/authState';
 import Message from '../components/message';
 import CurrencyFormat from '../methods/currencyFormat';
 import { Link } from 'react-router-dom';
+import AddOrRemCart from '../methods/addOrRemCart';
 
 function Cart({ url }) {
 
-    // function readCartData(data, cartData) {
-    //     data.forEach(value => {
-    //         cartData.push(value);
-    //     });
-    //     console.log(cartData);
-    // }
-    // let [cartData, setCarData] = useFetch();
-    function sum(data, cartList) {
+    function sum(data) {
         let amountSum = 0;
         for (let i = 0; i < data.length; i++) {
-            amountSum += data[i].price * cartList[i].order_quantity;
+            amountSum += data[i].price * data[i].order_quantity;
         }
         return amountSum;
     }
@@ -28,10 +21,14 @@ function Cart({ url }) {
     let promoCode = 0;
 
     const { authUser } = useAuthState();
-    const { data, isPending, error } = useFetch(`${url}/cart/${authUser && authUser.uid}`);
-    const { data: cartList } = useFetch(`${url}/cart/list/${authUser && authUser.uid}`);
+    const { data, isPending, error, setData } = useFetch(`${url}/cart/${authUser && authUser.uid}`);
+    data && console.log(data)
 
-    // cartList && console.log(cartList)
+    const handleIncrOrDecrQuantity = (index, increase) => {
+        const newData = [...data];
+        increase ? newData[index].order_quantity++ : newData[index].order_quantity--;
+        setData(newData);
+    };
 
     return (
         <div>
@@ -49,27 +46,49 @@ function Cart({ url }) {
                 {(!data && !isPending) && <Message message={error} />}
 
                 {/* When data is available */}
-                {((data && data.length > 0) && cartList) && <div className='cart_bdy'>
+                {((data && data.length > 0) && data) && <div className='cart_bdy'>
 
                     <div className="cart_p_container">
                         {data.map((element, index) => (
-                            <Link to={`/product_page/${element._id}`} className="cart_product card hover row_spc_btw link" key={index}>
+                            <div className="cart_product card row_spc_btw link" key={index}>
                                 <div>
-                                    <div className='row' style={{ alignItems: 'start' }}>
-                                        <img src={element.image_urls[0]} alt="img" style={{ objectFit: 'cover' }} />
-                                        <div>
-                                            <p style={{ marginBottom: '5px' }} className='section_text'>{element.name}</p>
-                                            <p className='price_format'>{CurrencyFormat(element.price)}</p>
+                                    <Link to={`/product_page/${element._id}`} className='link'>
+                                        <div className='row' style={{ alignItems: 'start' }}>
+                                            <img src={element.image_urls[0]} alt="img" style={{ objectFit: 'cover' }} />
+                                            <div>
+                                                <p style={{ marginBottom: '5px' }} className='section_text'>{element.name}</p>
+                                                <p className='price_format'>{CurrencyFormat(element.price)}</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <button className='del'>REMOVE</button>
+                                    </Link>
+                                    <button className='del'
+                                        onClick={() => {
+                                            AddOrRemCart(url, authUser.uid, element._id, true, () => {
+                                                setData(data.filter(value => value._id !== element._id));
+                                            })
+                                        }}>REMOVE</button>
                                 </div>
                                 <div className='p_qty_sec'>
-                                    <i style={{ backgroundColor: cartList[index].order_quantity === element.quantity ? '#d0d0d0' : '' }}>+</i><br />
-                                    <p>{cartList[index].order_quantity}</p><br />
-                                    <i style={{ backgroundColor: cartList[index].order_quantity < 2 ? '#d0d0d0' : '' }}>-</i>
+                                    {/* Increament button */}
+                                    <i style={{
+                                        backgroundColor: element.order_quantity === element.quantity ? '#d0d0d0' : '',
+                                        cursor: element.order_quantity === element.quantity ? 'not-allowed' : ''
+                                    }}
+                                        onClick={() => {
+                                            if (element.order_quantity !== element.quantity) handleIncrOrDecrQuantity(index, true)
+                                        }}>+</i><br />
+                                    <p>{element.order_quantity}</p><br />
+                                    {/* Decreament button */}
+                                    <i style={{
+                                        backgroundColor: element.order_quantity < 2 ? '#d0d0d0' : '',
+                                        cursor: element.order_quantity < 2 ? 'not-allowed' : ''
+                                    }}
+                                        onClick={() => {
+                                            if (element.order_quantity >= 2) handleIncrOrDecrQuantity(index, false)
+
+                                        }}>-</i>
                                 </div>
-                            </Link>
+                            </div>
                         ))}
                     </div>
 
@@ -81,7 +100,7 @@ function Cart({ url }) {
                         </div>
                         <div className="sum_row row_spc_btw">
                             <p>Cart Total</p>
-                            <p>{CurrencyFormat(sum(data, cartList))}</p>
+                            <p>{CurrencyFormat(sum(data))}</p>
                         </div>
                         <div className="sum_row row_spc_btw">
                             <p>Delivery</p>
@@ -94,7 +113,7 @@ function Cart({ url }) {
                         <hr />
                         <div className="sum_row row_spc_btw">
                             <p>Sub total</p>
-                            <p>{CurrencyFormat(sum(data, cartList) + deliveryFee + promoCode)}</p>
+                            <p>{CurrencyFormat(sum(data) + deliveryFee + promoCode)}</p>
                         </div>
                         <button className="add">PROCEED TO CHECKOUT</button>
                     </div>
